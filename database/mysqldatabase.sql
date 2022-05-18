@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-05-2022 a las 00:30:05
+-- Tiempo de generación: 19-05-2022 a las 00:57:26
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -82,7 +82,8 @@ CREATE TABLE `orderdetail` (
   `id` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `productID` int(11) NOT NULL
+  `productID` int(11) NOT NULL,
+  `orderID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -163,7 +164,8 @@ ALTER TABLE `order`
 --
 ALTER TABLE `orderdetail`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `productOrderDetailFK` (`productID`);
+  ADD KEY `productOrderDetailFK` (`productID`),
+  ADD KEY `orderOrderDetailFK` (`orderID`);
 
 --
 -- Indices de la tabla `product`
@@ -260,6 +262,7 @@ ALTER TABLE `order`
 -- Filtros para la tabla `orderdetail`
 --
 ALTER TABLE `orderdetail`
+  ADD CONSTRAINT `orderOrderDetailFK` FOREIGN KEY (`orderID`) REFERENCES `order` (`id`),
   ADD CONSTRAINT `productOrderDetailFK` FOREIGN KEY (`productID`) REFERENCES `product` (`id`);
 
 --
