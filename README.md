@@ -21,6 +21,8 @@
 - /search/:id                   GET
 - /login                        GET
 - /cart                         GET
+- /cart/buy                     PUT
+- /buy                          PUT
 - /products                     GET
 - /products/:name               GET
 - /products/categories          GET
