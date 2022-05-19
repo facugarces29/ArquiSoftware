@@ -38,11 +38,21 @@ func init() {
 }
 
 func StartDbEngine() {
+
 	// We need to migrate all classes model.
 	db.AutoMigrate(&model.User{})
 
 	// Create users
-	db.Create(&model.User{Name: "lautaro", LastName: "Saenz", UserName: "lautarose", Email: "abcdefg@gmail.com", Pwd: "hola123"})
+	err := db.First(&model.User{}).Error
+
+	if err != nil {
+		log.Info("Database already established")
+	} else {
+		db.Create(&model.User{Name: "lautaro", LastName: "Saenz", UserName: "lautarose", Email: "abcdefg@gmail.com", Pwd: "hola123"})
+		db.Create(&model.User{Name: "Joaco", LastName: "Reyero", UserName: "jaocoreyero", Email: "12345@gmail.com", Pwd: "hola123"})
+		db.Create(&model.User{Name: "facundo", LastName: "Garces", UserName: "Facuelcapo", Email: "asasas@gmail.com", Pwd: "hola123"})
+		db.Create(&model.User{Name: "Hernan", LastName: "Lachampionliga", UserName: "hernanchampion", Email: "hernan@gmail.com", Pwd: "hola123"})
+	}
 
 	log.Info("Finishing Migration Database Tables")
 }
