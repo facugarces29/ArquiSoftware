@@ -1,7 +1,7 @@
 package database
 
 import (
-	userClient "Proyecto/ArquiSoftware/clients"
+	userClient "Proyecto/ArquiSoftware/clients/user"
 	model "Proyecto/ArquiSoftware/model/user"
 	"os"
 

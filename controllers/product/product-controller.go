@@ -18,8 +18,8 @@ func GetProductById(c *gin.Context) {
 	c.JSON(http.StatusOK, productDto)
 }
 
-func GetUsers(c *gin.Context) {
-	var productsDto = service.ProductService.GetUsers()
+func GetProducts(c *gin.Context) {
+	var productsDto = service.ProductService.GetProducts()
 
 	c.JSON(http.StatusOK, productsDto)
 }

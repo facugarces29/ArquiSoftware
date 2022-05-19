@@ -1,8 +1,8 @@
 package product
 
 import (
-	productCliente "Proyecto/ArquiSoftware/clients"
-	"Proyecto/ArquiSoftware/dto"
+	productCliente "Proyecto/ArquiSoftware/clients/product"
+	dto "Proyecto/ArquiSoftware/dto/product"
 	model "Proyecto/ArquiSoftware/model/product"
 )
 
@@ -10,7 +10,7 @@ type productService struct{}
 
 type productServiceInterface interface {
 	GetProductById(id int) dto.ProductDto
-	GetProducts() dto.ProductDto
+	GetProducts() dto.ProductsDto
 }
 
 var (
@@ -29,11 +29,14 @@ func (s *productService) GetProductById(id int) dto.ProductDto {
 	if product.ID == 0 {
 		return productDto
 	}
+
+	productDto.Id = product.ID
 	productDto.Name = product.Name
 	productDto.Description = product.Description
 	productDto.Price = product.Price
 	productDto.Stock = product.Stock
 	productDto.Image = product.Image
+
 	return productDto
 }
 
@@ -42,12 +45,14 @@ func (s *productService) GetProducts() dto.ProductsDto {
 	var productsDto dto.ProductsDto
 
 	for _, product := range products {
-		var productDto dto.productDto
+		var productDto dto.ProductDto
+		productDto.Id = product.ID
 		productDto.Name = product.Name
 		productDto.Description = product.Description
 		productDto.Price = product.Price
 		productDto.Stock = product.Stock
 		productDto.Image = product.Image
+
 		productsDto = append(productsDto, productDto)
 	}
 

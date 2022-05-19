@@ -1,8 +1,8 @@
 package services
 
 import (
-	userCliente "Proyecto/ArquiSoftware/clients"
-	"Proyecto/ArquiSoftware/dto"
+	userCliente "Proyecto/ArquiSoftware/clients/user"
+	dto "Proyecto/ArquiSoftware/dto/user"
 	model "Proyecto/ArquiSoftware/model/user"
 )
 
