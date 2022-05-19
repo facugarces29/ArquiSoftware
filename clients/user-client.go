@@ -9,11 +9,21 @@ import (
 
 var Db *gorm.DB
 
-func GetUserById(id int) model.User {
-	var user model.User
+func GetUserById(id int) model.ModelUser {
+	var user model.ModelUser
 
 	Db.Where("id = ?", id).First(&user)
 	log.Debug("User: ", user)
 
 	return user
+}
+
+func GetUsers() model.ModelUsers {
+	var users model.ModelUsers
+
+	Db.Find(&users)
+
+	log.Debug("Users: ", users)
+
+	return users
 }
