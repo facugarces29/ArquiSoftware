@@ -1,7 +1,9 @@
 package model
 
-type ModelUser struct {
-	Id       int    `gorm:"type:integer(255);not null;primarykey"`
+import "github.com/jinzhu/gorm"
+
+type User struct {
+	gorm.Model
 	Name     string `gorm:"type:varchar(255);not null"`
 	LastName string `gorm:"type:varchar(255);not null"`
 	UserName string `gorm:"type:varchar(255);not null;unique"`
@@ -9,7 +11,7 @@ type ModelUser struct {
 	Pwd      string `gorm:"type:varchar(255);not null"`
 }
 
-type ModelUsers []ModelUser
+type Users []User
 
 /*`id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_bin NOT NULL,

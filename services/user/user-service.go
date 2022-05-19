@@ -3,7 +3,7 @@ package services
 import (
 	userCliente "Proyecto/ArquiSoftware/clients"
 	"Proyecto/ArquiSoftware/dto"
-	"Proyecto/ArquiSoftware/model"
+	model "Proyecto/ArquiSoftware/model/user"
 )
 
 type userService struct{}
@@ -23,21 +23,21 @@ func init() {
 
 func (s *userService) GetUserById(id int) dto.UserDto {
 
-	var user model.ModelUser = userCliente.GetUserById(id)
+	var user model.User = userCliente.GetUserById(id)
 	var userDto dto.UserDto
 
-	if user.Id == 0 {
+	if user.ID == 0 {
 		return userDto
 	}
 	userDto.Name = user.Name
 	userDto.LastName = user.LastName
 	userDto.UserName = user.UserName
-	userDto.Id = user.Id
+	userDto.Id = user.ID
 	return userDto
 }
 
 func (s *userService) GetUsers() dto.UsersDto {
-	var users model.ModelUsers = userCliente.GetUsers()
+	var users model.Users = userCliente.GetUsers()
 	var usersDto dto.UsersDto
 
 	for _, user := range users {
@@ -45,7 +45,7 @@ func (s *userService) GetUsers() dto.UsersDto {
 		userDto.Name = user.Name
 		userDto.LastName = user.LastName
 		userDto.UserName = user.Name
-		userDto.Id = user.Id
+		userDto.Id = user.ID
 
 		usersDto = append(usersDto, userDto)
 	}
