@@ -1,6 +1,7 @@
 package model
 
 type User struct {
+	Id       int    `gorm:"type:integer(255);not null;primarykey"`
 	Name     string `gorm:"type:varchar(255);not null"`
 	LastName string `gorm:"type:varchar(255);not null"`
 	UserName string `gorm:"type:varchar(255);not null;unique"`
