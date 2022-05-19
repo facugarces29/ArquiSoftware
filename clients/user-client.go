@@ -1,7 +1,7 @@
 package client
 
 import (
-	"Proyecto/ArquiSoftware/model"
+	model "Proyecto/ArquiSoftware/model/user"
 
 	"github.com/jinzhu/gorm"
 	log "github.com/sirupsen/logrus"
@@ -9,8 +9,8 @@ import (
 
 var Db *gorm.DB
 
-func GetUserById(id int) model.ModelUser {
-	var user model.ModelUser
+func GetUserById(id int) model.User {
+	var user model.User
 
 	Db.Where("id = ?", id).First(&user)
 	log.Debug("User: ", user)
@@ -18,8 +18,8 @@ func GetUserById(id int) model.ModelUser {
 	return user
 }
 
-func GetUsers() model.ModelUsers {
-	var users model.ModelUsers
+func GetUsers() model.Users {
+	var users model.Users
 
 	Db.Find(&users)
 

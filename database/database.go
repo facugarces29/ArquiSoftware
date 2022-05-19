@@ -2,7 +2,7 @@ package database
 
 import (
 	userClient "Proyecto/ArquiSoftware/clients"
-	"Proyecto/ArquiSoftware/model"
+	model "Proyecto/ArquiSoftware/model/user"
 	"os"
 
 	"github.com/jinzhu/gorm"
@@ -39,7 +39,10 @@ func init() {
 
 func StartDbEngine() {
 	// We need to migrate all classes model.
-	db.AutoMigrate(&model.ModelUser{})
+	db.AutoMigrate(&model.User{})
+
+	// Create users
+	db.Create(&model.User{Name: "lautaro", LastName: "Saenz", UserName: "lautarose", Email: "abcdefg@gmail.com", Pwd: "hola123"})
 
 	log.Info("Finishing Migration Database Tables")
 }
