@@ -41,8 +41,10 @@ func StartDbEngine() {
 
 	// We need to migrate all classes model.
 	db.AutoMigrate(&model.User{})
+	log.Info("Finishing Migration Database Tables")
 
 	// Create users
+	log.Info("Creating Assets...")
 	err := db.First(&model.User{}).Error
 
 	if err != nil {
@@ -50,9 +52,11 @@ func StartDbEngine() {
 		db.Create(&model.User{Name: "Joaco", LastName: "Reyero", UserName: "jaocoreyero", Email: "12345@gmail.com", Pwd: "hola123"})
 		db.Create(&model.User{Name: "facundo", LastName: "Garces", UserName: "Facuelcapo", Email: "asasas@gmail.com", Pwd: "hola123"})
 		db.Create(&model.User{Name: "Hernan", LastName: "Lachampionliga", UserName: "hernanchampion", Email: "hernan@gmail.com", Pwd: "hola123"})
-	} else {
-		log.Info("database already established")
-	}
 
-	log.Info("Finishing Migration Database Tables")
+		//manage errors...
+
+		log.Info("Assets Created")
+	} else {
+		log.Info("Assets Were Already Created")
+	}
 }
