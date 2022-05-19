@@ -1,8 +1,13 @@
 package app
 
-func MapUrls() {
-	//GETs
+import (
+	userController "Proyecto/ArquiSoftware/controllers/user"
+)
 
-	//POSTs
+func MapUrls() {
+
+	// Users Mapping
+	router.GET("/user/:id", userController.GetUserById)
+	router.GET("/user", userController.GetUsers)
 
 }
