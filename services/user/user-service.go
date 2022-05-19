@@ -46,7 +46,7 @@ func (s *userService) GetUsers() dto.UsersDto {
 		var userDto dto.UserDto
 		userDto.Name = user.Name
 		userDto.LastName = user.LastName
-		userDto.UserName = user.Name
+		userDto.UserName = user.UserName
 		userDto.Id = user.ID
 		userDto.Email = user.Email
 		userDto.Password = user.Pwd
