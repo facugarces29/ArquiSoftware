@@ -1,4 +1,4 @@
-package product
+package services
 
 import (
 	productCliente "Proyecto/ArquiSoftware/clients/product"

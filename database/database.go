@@ -7,6 +7,8 @@ import (
 	productClient "Proyecto/ArquiSoftware/clients/product"
 	productModel "Proyecto/ArquiSoftware/model/product"
 
+	assets "Proyecto/ArquiSoftware/database/assets"
+
 	"os"
 
 	"github.com/jinzhu/gorm"
@@ -51,27 +53,5 @@ func StartDbEngine() {
 	db.AutoMigrate((&productModel.Product{}))
 	log.Info("Finishing Migration Database Tables")
 
-	// Create users
-	log.Info("Creating Assets...")
-	err := db.First(&userModel.User{}).Error
-
-	if err != nil {
-		//Creating users
-
-		db.Create(&userModel.User{Name: "lautaro", LastName: "Saenz", UserName: "lautarose", Email: "abcdefg@gmail.com", Pwd: "hola123"})
-		db.Create(&userModel.User{Name: "Joaco", LastName: "Reyero", UserName: "jaocoreyero", Email: "12345@gmail.com", Pwd: "hola123"})
-		db.Create(&userModel.User{Name: "Facundo", LastName: "Garces", UserName: "Facuelcapo", Email: "asasas@gmail.com", Pwd: "hola123"})
-		db.Create(&userModel.User{Name: "Hernan", LastName: "Lachampionliga", UserName: "hernanchampion", Email: "hernan@gmail.com", Pwd: "hola123"})
-		db.Create(&userModel.User{Name: "Saul", LastName: "Hudson", UserName: "slash", Email: "slashGNR@gmail.com", Pwd: "hola123"})
-
-		//Creating products
-
-		db.Create(&productModel.Product{Name: "PC", Description: "pc gamer intel i7", Price: 100000, Stock: 5})
-
-		//manage errors...
-
-		log.Info("Assets Created")
-	} else {
-		log.Info("Assets Were Already Created")
-	}
+	assets.InsertData(db)
 }
