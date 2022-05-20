@@ -68,12 +68,6 @@ func StartDbEngine() {
 
 		db.Create(&productModel.Product{Name: "PC", Description: "pc gamer intel i7", Price: 100000, Stock: 5})
 
-		/*Name        string  `gorm:"type:varchar(255);not null;unique"`
-		Description string  `gorm:"type:varchar(255);not null"`
-		Price       float64 `gorm:"type:decimal(10,2);not null"`
-		Stock       int     `gorm:"type:integer(255);not null"`
-		Image       string  `gorm:"type:blob;not null"`*/
-
 		//manage errors...
 
 		log.Info("Assets Created")
