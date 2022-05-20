@@ -53,5 +53,5 @@ func StartDbEngine() {
 	db.AutoMigrate((&productModel.Product{}))
 	log.Info("Finishing Migration Database Tables")
 
-	assets.InsertData(db)
+	assets.InsertAssets(db)
 }
