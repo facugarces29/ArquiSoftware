@@ -9,7 +9,7 @@ import (
 	productModel "Proyecto/ArquiSoftware/model/product"
 )
 
-func InsertAssets(db *gorm.DB) {
+func InsertData(db *gorm.DB) {
 	// Create assets
 	log.Info("Creating Assets...")
 	err := db.First(&userModel.User{}).Error

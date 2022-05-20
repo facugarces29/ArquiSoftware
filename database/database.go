@@ -7,7 +7,7 @@ import (
 	productClient "Proyecto/ArquiSoftware/clients/product"
 	productModel "Proyecto/ArquiSoftware/model/product"
 
-	assets "Proyecto/ArquiSoftware/database/assets"
+	data "Proyecto/ArquiSoftware/database/data"
 
 	"os"
 
@@ -53,5 +53,5 @@ func StartDbEngine() {
 	db.AutoMigrate((&productModel.Product{}))
 	log.Info("Finishing Migration Database Tables")
 
-	assets.InsertAssets(db)
+	data.InsertData(db)
 }
