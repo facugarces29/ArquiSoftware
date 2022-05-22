@@ -14,7 +14,7 @@ type User struct {
 	UserName         string `gorm:"type:varchar(255);not null;unique"`
 	Email            string `gorm:"type:varchar(255);not null"`
 	Pwd              string `gorm:"type:varchar(255);not null"`
-	address.Adresses `gorm:"foreignkey:user_id"`
+	address.Addresses `gorm:"foreignkey:user_id"`
 	order.Orders     `gorm:"foreignkey:user_id"`
 }
 

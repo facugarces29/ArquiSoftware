@@ -16,4 +16,4 @@ type Address struct {
 	order.Orders `gorm:"foreignkey:address_id"`
 }
 
-type Adresses []Address
+type Addresses []Address
