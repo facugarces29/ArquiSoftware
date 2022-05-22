@@ -14,7 +14,7 @@ type Product struct {
 	Stock              int     `gorm:"type:integer(255);not null"`
 	Image              string  `gorm:"type:blob;not null"`
 	order.OrderDetails `gorm:"foreignkey:product_id"`
-	ProductCategories `gorm:"foreignkey:product_id"`
+	ProductCategories  `gorm:"foreignkey:product_id"`
 }
 
 type Products []Product
