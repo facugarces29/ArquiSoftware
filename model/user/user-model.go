@@ -1,14 +1,21 @@
 package model
 
-import "github.com/jinzhu/gorm"
+import (
+	address "Proyecto/ArquiSoftware/model/address"
+	order "Proyecto/ArquiSoftware/model/order"
+
+	"github.com/jinzhu/gorm"
+)
 
 type User struct {
 	gorm.Model
-	Name     string `gorm:"type:varchar(255);not null"`
-	LastName string `gorm:"type:varchar(255);not null"`
-	UserName string `gorm:"type:varchar(255);not null;unique"`
-	Email    string `gorm:"type:varchar(255);not null"`
-	Pwd      string `gorm:"type:varchar(255);not null"`
+	Name             string `gorm:"type:varchar(255);not null"`
+	LastName         string `gorm:"type:varchar(255);not null"`
+	UserName         string `gorm:"type:varchar(255);not null;unique"`
+	Email            string `gorm:"type:varchar(255);not null"`
+	Pwd              string `gorm:"type:varchar(255);not null"`
+	address.Adresses `gorm:"foreignkey:user_id"`
+	order.Orders     `gorm:"foreignkey:user_id"`
 }
 
 type Users []User
