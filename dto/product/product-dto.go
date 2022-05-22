@@ -1,12 +1,13 @@
 package dto
 
 type ProductDto struct {
-	Id          uint    `json:"id"`
-	Name        string  `json:"name"`
-	Description string  `json:"description"`
-	Price       float64 `json:"price"`
-	Stock       int     `json:"stock"`
-	Image       string  `json:"image"`
+	Id            uint    `json:"id"`
+	Name          string  `json:"name"`
+	Description   string  `json:"description"`
+	Price         float64 `json:"price"`
+	Stock         int     `json:"stock"`
+	Image         string  `json:"image"`
+	CategoriesDto `json:"categories"`
 }
 
 type ProductsDto []ProductDto
