@@ -5,9 +5,13 @@ import (
 	userModel "Proyecto/ArquiSoftware/model/user"
 
 	productClient "Proyecto/ArquiSoftware/clients/product"
-	productModel "Proyecto/ArquiSoftware/model/product"
 
-	data "Proyecto/ArquiSoftware/database/data"
+	addressClient "Proyecto/ArquiSoftware/clients/address"
+	addressModel "Proyecto/ArquiSoftware/model/address"
+
+	orderClient "Proyecto/ArquiSoftware/clients/order"
+
+	//data "Proyecto/ArquiSoftware/database/data"
 
 	"os"
 
@@ -32,6 +36,8 @@ func init() {
 
 	db, err = gorm.Open("mysql", DBUser+":"+DBPass+"@tcp("+DBHost+":3306)/"+DBName+"?charset=utf8&parseTime=True")
 
+	db.LogMode(true)
+
 	if err != nil {
 		log.Info("Connection Failed to Open")
 		log.Fatal(err)
@@ -42,16 +48,17 @@ func init() {
 	// We need to add all CLients that we build
 	userClient.Db = db
 	productClient.Db = db
+	addressClient.Db = db
+	orderClient.Db = db
 
 }
 
 func StartDbEngine() {
 
 	// We need to migrate all classes model.
-	db.AutoMigrate(&userModel.User{})
+	db.AutoMigrate(&userModel.User{}, &addressModel.Address{})
+	//&productModel.Product{}, &productModel.Category{}, &productModel.ProductCategory{}, &orderModel.Order{}, &orderModel.OrderDetail{}, &addressModel.Address{})
 
-	db.AutoMigrate((&productModel.Product{}))
 	log.Info("Finishing Migration Database Tables")
-
-	data.InsertData(db)
+	//data.InsertData(db)
 }

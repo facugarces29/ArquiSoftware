@@ -6,9 +6,9 @@ import (
 
 type Category struct {
 	gorm.Model
-	Name              string `gorm:"type:varchar(255);not null"`
-	Description       string `gorm:"type:varchar(255);not null"`
-	ProductCategories `gorm:"foreignkey:category_id"`
+	Name        string `gorm:"type:varchar(255);not null"`
+	Description string `gorm:"type:varchar(255);not null"`
+	//ProductCategories `gorm:"foreignkey:category_id"`
 }
 
 type Categories []Category
