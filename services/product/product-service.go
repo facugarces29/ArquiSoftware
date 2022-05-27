@@ -26,11 +26,11 @@ func (s *productService) GetProductById(id int) dto.ProductDto {
 	var product model.Product = productCliente.GetProductById(id)
 	var productDto dto.ProductDto
 
-	if product.ID == 0 {
+	if product.ProductID == 0 {
 		return productDto
 	}
 
-	productDto.Id = product.ID
+	productDto.Id = product.ProductID
 	productDto.Name = product.Name
 	productDto.Description = product.Description
 	productDto.Price = product.Price
@@ -46,7 +46,7 @@ func (s *productService) GetProducts() dto.ProductsDto {
 
 	for _, product := range products {
 		var productDto dto.ProductDto
-		productDto.Id = product.ID
+		productDto.Id = product.ProductID
 		productDto.Name = product.Name
 		productDto.Description = product.Description
 		productDto.Price = product.Price

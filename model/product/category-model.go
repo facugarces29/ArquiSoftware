@@ -1,14 +1,8 @@
 package model
 
-import (
-	"github.com/jinzhu/gorm"
-)
-
 type Category struct {
-	gorm.Model
-	Name        string `gorm:"type:varchar(255);not null"`
-	Description string `gorm:"type:varchar(255);not null"`
-	//ProductCategories `gorm:"foreignkey:category_id"`
+	CategoryID uint   `gorm:"primary_key"`
+	Name       string `gorm:"type:varchar(255);not null"`
 }
 
 type Categories []Category

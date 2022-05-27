@@ -5,13 +5,15 @@ import (
 	userModel "Proyecto/ArquiSoftware/model/user"
 
 	productClient "Proyecto/ArquiSoftware/clients/product"
+	productModel "Proyecto/ArquiSoftware/model/product"
 
 	addressClient "Proyecto/ArquiSoftware/clients/address"
 	addressModel "Proyecto/ArquiSoftware/model/address"
 
 	orderClient "Proyecto/ArquiSoftware/clients/order"
+	orderModel "Proyecto/ArquiSoftware/model/order"
 
-	//data "Proyecto/ArquiSoftware/database/data"
+	data "Proyecto/ArquiSoftware/database/data"
 
 	"os"
 
@@ -56,9 +58,8 @@ func init() {
 func StartDbEngine() {
 
 	// We need to migrate all classes model.
-	db.AutoMigrate(&userModel.User{}, &addressModel.Address{})
-	//&productModel.Product{}, &productModel.Category{}, &productModel.ProductCategory{}, &orderModel.Order{}, &orderModel.OrderDetail{}, &addressModel.Address{})
+	db.AutoMigrate(&userModel.User{}, &addressModel.Address{}, &orderModel.Order{}, &orderModel.OrderDetail{}, &productModel.Product{}, &productModel.Category{})
 
 	log.Info("Finishing Migration Database Tables")
-	//data.InsertData(db)
+	data.InsertData(db)
 }
