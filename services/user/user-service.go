@@ -34,7 +34,7 @@ func (s *userService) GetUserById(id int) dto.UserDto {
 	userDto.UserName = user.UserName
 	userDto.Id = user.UserID
 	userDto.Email = user.Email
-	userDto.Password = user.Pwd
+	userDto.Password = ""
 	return userDto
 }
 
@@ -49,7 +49,7 @@ func (s *userService) GetUsers() dto.UsersDto {
 		userDto.UserName = user.UserName
 		userDto.Id = user.UserID
 		userDto.Email = user.Email
-		userDto.Password = user.Pwd
+		userDto.Password = ""
 		usersDto = append(usersDto, userDto)
 	}
 
