@@ -30,4 +30,3 @@
 - /order                        GET 
 - /order/detail                 GET 
 - /purchases                    GET 
-
