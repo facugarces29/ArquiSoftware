@@ -19,15 +19,15 @@
 
 - /home                         GET
 - /search/:id                   GET
-- /login                        POST
+- /login                        POST    done
 - /cart                         GET
 - /cart/buy                     PUT
 - /buy                          PUT
-- /products                     GET
-- /products/:name               GET
-- /products/categories          GET
-- /products/categories/:name    GET
-- /order                        GET
-- /order/detail                 GET
-- /purchases                    GET
+- /products                     GET     done
+- /products/:id                 GET     done
+- /categories                   GET     done 
+- /categories/:id               GET     done
+- /order                        GET 
+- /order/detail                 GET 
+- /purchases                    GET 
 
