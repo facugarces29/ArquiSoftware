@@ -9,7 +9,7 @@ import (
 func GetOrderDetailById(id int) model.OrderDetail {
 	var orderDetail model.OrderDetail
 
-	Db.Where("id = ?", id).First(&orderDetail)
+	Db.Where("order_detail_id = ?", id).First(&orderDetail)
 	log.Debug("Order Detail: ", orderDetail)
 
 	return orderDetail
