@@ -5,6 +5,7 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	addressModel "Proyecto/ArquiSoftware/model/address"
+	productModel "Proyecto/ArquiSoftware/model/product"
 	userModel "Proyecto/ArquiSoftware/model/user"
 )
 
@@ -12,7 +13,7 @@ func InsertData(db *gorm.DB) {
 	// Insert data
 	log.Info("Inserting data...")
 
-	//Creating users
+	//Inserting users
 	err := db.First(&userModel.User{}).Error
 
 	if err != nil {
@@ -23,9 +24,45 @@ func InsertData(db *gorm.DB) {
 		db.Create(&userModel.User{Name: "Saul", LastName: "Hudson", UserName: "slash", Email: "slashGNR@gmail.com", Pwd: "hola123"})
 	}
 
-	//Creating products
+	//Inserting Categories
 
-	//Creating addresses
+	err = db.First(&productModel.Category{}).Error
+
+	if err != nil {
+		db.Create(&productModel.Category{Name: "Electronics"})
+		db.Create(&productModel.Category{Name: "Electrodomestics"})
+		db.Create(&productModel.Category{Name: "Fitness"})
+		db.Create(&productModel.Category{Name: "Toys"})
+		db.Create(&productModel.Category{Name: "Electronics"})
+		db.Create(&productModel.Category{Name: "Supermarket"})
+		db.Create(&productModel.Category{Name: "Babies"})
+		db.Create(&productModel.Category{Name: "Fashion"})
+	}
+
+	//Inserting products
+
+	err = db.First(&productModel.Product{}).Error
+
+	if err != nil {
+		db.Create(&productModel.Product{CategoryID: 1, Name: "Asus Laptop", Description: "Personal laptop, intel i5, 8gb ram, fullhd screen, windows 10", Price: 100000, Stock: 10, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 1, Name: "Logitech Mouse", Description: "Mouse 16000dpi", Price: 8000, Stock: 15, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 1, Name: "Hyperx Keyboard", Description: "Keyboard rgb, cherry, us distribution", Price: 12000, Stock: 4, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 1, Name: "Samsung Monitor", Description: "Resolution: 1920x1080, 144hz, 32 inches", Price: 125000, Stock: 2, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 3, Name: "Randers Multigym", Description: "75kg, more than 30 exercises, aluminium", Price: 85000, Stock: 3, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 3, Name: "Smart Tech Fixed Bycicle", Description: "Spinning exercises, high endurance", Price: 35000, Stock: 1, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 3, Name: "Pull-Up Bar", Description: "Pull-up bar", Price: 9500, Stock: 6, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 3, Name: "Dumbell and Kettlebell kit", Description: "2x10kg dumbell,2x5kg kettlebell", Price: 7000, Stock: 5, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 2, Name: "Samsung Refrigerator", Description: "freezer, 555L, no frost", Price: 250000, Stock: 2, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 2, Name: "Atma toaster", Description: "220v", Price: 4500, Stock: 8, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 2, Name: "samsung Washing Machine", Description: "up to 9kg", Price: 65000, Stock: 4, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 2, Name: "BGH Electric Oven", Description: "Electric Oven", Price: 20300, Stock: 9, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 4, Name: "Skateboard", Description: "Skateboard", Price: 10000, Stock: 3, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 4, Name: "Hot-Wheels Camaro", Description: "1980 Camaro", Price: 2000, Stock: 10, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 4, Name: "Nerf n-strike", Description: "nerf n-strike", Price: 5500, Stock: 2, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 4, Name: "Lego Spidey", Description: "100 pcs", Price: 7990, Stock: 1, Image: ""})
+	}
+
+	//Inserting addresses
 
 	err = db.First(&addressModel.Address{}).Error
 
@@ -36,8 +73,6 @@ func InsertData(db *gorm.DB) {
 		db.Create(&addressModel.Address{UserID: 4, State: "Cordoba", City: "Cordoba", Zip: 5000, Addressline: "Velez Sarsfield 1500"})
 		db.Create(&addressModel.Address{UserID: 5, State: "Cordoba", City: "Cordoba", Zip: 5000, Addressline: "Belgrano 110"})
 	}
-
-	//db.Create(&productModel.Product{Name: "PC", Description: "pc gamer intel i7", Price: 100000, Stock: 5})
 
 	//manage errors...
 
