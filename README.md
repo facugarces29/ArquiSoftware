@@ -19,7 +19,7 @@
 
 - /home                         GET
 - /search/:id                   GET
-- /login                        GET
+- /login                        POST
 - /cart                         GET
 - /cart/buy                     PUT
 - /buy                          PUT
