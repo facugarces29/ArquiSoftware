@@ -12,7 +12,7 @@ var Db *gorm.DB
 func GetOrderById(id int) model.Order {
 	var order model.Order
 
-	Db.Where("id = ?", id).First(&order)
+	Db.Where("order_id = ?", id).First(&order)
 	log.Debug("Order: ", order)
 
 	return order
