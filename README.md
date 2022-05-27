@@ -1,4 +1,4 @@
-# Api backend e-commerce para Arquitectura de software en golang.
+# Api backend e-commerce para Arquitectura de Software en golang.
 
 # REQUERIMIENTOS:
 

@@ -7,7 +7,6 @@ import (
 )
 
 func MapUrls() {
-
 	// Users Mapping
 	router.GET("/user/:id", userController.GetUserById)
 	router.GET("/user", userController.GetUsers)
@@ -22,5 +21,4 @@ func MapUrls() {
 	// Categories Mapping
 	router.GET("/category/:id", productController.GetCategoryById)
 	router.GET("/category", productController.GetCategories)
-
 }
