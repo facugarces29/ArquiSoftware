@@ -1,4 +1,4 @@
-package product
+package controllers
 
 import (
 	service "Proyecto/ArquiSoftware/services/product"

@@ -9,7 +9,7 @@ import (
 func GetCategoryById(id int) model.Category {
 	var category model.Category
 
-	Db.Where("id = ?", id).First(&category)
+	Db.Where("category_id = ?", id).First(&category)
 	log.Debug("Category: ", category)
 
 	return category
