@@ -9,21 +9,31 @@ import (
 
 var Db *gorm.DB
 
-func GetProductById(id int) model.Product {
+func GetProductById(id int) (model.Product, error) {
 	var product model.Product
 
-	Db.Where("product_id = ?", id).First(&product)
+	err := Db.Where("product_id = ?", id).First(&product).Error
 	log.Debug("Product: ", product)
 
-	return product
+	if err != nil {
+		log.Println(err)
+		return product, err
+	}
+
+	return product, err
 }
 
-func GetProducts() model.Products {
+func GetProducts() (model.Products, error) {
 	var products model.Products
 
-	Db.Find(&products)
+	err := Db.Find(&products).Error
 
 	log.Debug("Products: ", products)
 
-	return products
+	if err != nil {
+		log.Println(err)
+		return products, err
+	}
+
+	return products, err
 }

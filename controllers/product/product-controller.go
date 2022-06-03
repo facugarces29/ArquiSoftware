@@ -13,13 +13,23 @@ func GetProductById(c *gin.Context) {
 	log.Debug("User id to load: " + c.Param("id"))
 
 	id, _ := strconv.Atoi(c.Param("id"))
-	var productDto = service.ProductService.GetProductById(id)
+	productDto, err := service.ProductService.GetProductById(id)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, productDto)
+		return
+	}
 
 	c.JSON(http.StatusOK, productDto)
 }
 
 func GetProducts(c *gin.Context) {
-	var productsDto = service.ProductService.GetProducts()
+	productsDto, err := service.ProductService.GetProducts()
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, productsDto)
+		return
+	}
 
 	c.JSON(http.StatusOK, productsDto)
 }
