@@ -5,7 +5,7 @@ import (
 )
 
 type Product struct {
-	ProductID    uint    `gorm:"primary_key"`
+	ProductID    uint `gorm:"primary_key"`
 	CategoryID   uint
 	Name         string  `gorm:"type:varchar(255);not null;unique"`
 	Description  string  `gorm:"type:varchar(255);not null"`
@@ -13,8 +13,8 @@ type Product struct {
 	Stock        int     `gorm:"type:integer(255);not null"`
 	Image        string  `gorm:"type:blob;not null"`
 	OrderDetails orderdetail.OrderDetails
-	
-	Category     Category
+
+	Category Category
 }
 
 type Products []Product

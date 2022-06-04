@@ -13,6 +13,8 @@ import (
 	orderClient "Proyecto/ArquiSoftware/clients/order"
 	orderModel "Proyecto/ArquiSoftware/model/order"
 
+	searchClient "Proyecto/ArquiSoftware/clients/search"
+
 	data "Proyecto/ArquiSoftware/database/data"
 
 	"os"
@@ -52,6 +54,7 @@ func init() {
 	productClient.Db = db
 	addressClient.Db = db
 	orderClient.Db = db
+	searchClient.Db = db
 
 }
 

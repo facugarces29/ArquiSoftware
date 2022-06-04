@@ -3,6 +3,7 @@ package app
 import (
 	loginController "Proyecto/ArquiSoftware/controllers/login"
 	productController "Proyecto/ArquiSoftware/controllers/product"
+	searchController "Proyecto/ArquiSoftware/controllers/search"
 	userController "Proyecto/ArquiSoftware/controllers/user"
 )
 
@@ -23,5 +24,5 @@ func MapUrls() {
 	router.GET("/category", productController.GetCategories)
 
 	// Search Mapping
-
+	router.GET("/search/:param", searchController.GetProductsBySearchParam)
 }
