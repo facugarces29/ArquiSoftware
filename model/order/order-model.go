@@ -1,4 +1,4 @@
-package model
+package models
 
 import (
 	user "Proyecto/ArquiSoftware/model/user"

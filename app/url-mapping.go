@@ -21,4 +21,7 @@ func MapUrls() {
 	// Categories Mapping
 	router.GET("/category/:id", productController.GetCategoryById)
 	router.GET("/category", productController.GetCategories)
+
+	// Search Mapping
+
 }

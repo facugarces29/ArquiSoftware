@@ -1,4 +1,4 @@
-package model
+package models
 
 import (
 	orderdetail "Proyecto/ArquiSoftware/model/order"

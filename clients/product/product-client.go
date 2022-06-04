@@ -1,4 +1,4 @@
-package client
+package clients
 
 import (
 	model "Proyecto/ArquiSoftware/model/product"

@@ -1,4 +1,4 @@
-package model
+package models
 
 type OrderDetail struct {
 	OrderDetailID uint    `gorm:"primary_key"`
