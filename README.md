@@ -18,7 +18,7 @@
 # Restful:
 
 - /home                         GET
-- /search/:id                   GET
+- /search/:param                GET     done
 - /login                        POST    done
 - /cart                         GET
 - /cart/buy                     PUT
