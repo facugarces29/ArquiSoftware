@@ -1,6 +1,7 @@
 package app
 
 import (
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -10,9 +11,10 @@ var (
 
 func init() {
 	router = gin.Default()
+	router.Use(cors.Default())
 }
 
 func StartRoute() {
 	MapUrls()
-	router.Run(":8080")
+	router.Run(":8090")
 }

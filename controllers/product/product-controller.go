@@ -19,7 +19,7 @@ func GetProductById(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, productDto)
 		return
 	}
-
+	
 	c.JSON(http.StatusOK, productDto)
 }
 
