@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	service "Proyecto/ArquiSoftware/services/login"
+	service "github.com/facugarces29/ArquiSoftware/services/login"
 	"net/http"
 
-	dto "Proyecto/ArquiSoftware/dto/login"
+	dto "github.com/facugarces29/ArquiSoftware/dto/login"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"

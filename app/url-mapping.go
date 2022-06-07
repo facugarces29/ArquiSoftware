@@ -1,10 +1,10 @@
 package app
 
 import (
-	loginController "Proyecto/ArquiSoftware/controllers/login"
-	productController "Proyecto/ArquiSoftware/controllers/product"
-	searchController "Proyecto/ArquiSoftware/controllers/search"
-	userController "Proyecto/ArquiSoftware/controllers/user"
+	loginController "github.com/facugarces29/ArquiSoftware/controllers/login"
+	productController "github.com/facugarces29/ArquiSoftware/controllers/product"
+	searchController "github.com/facugarces29/ArquiSoftware/controllers/search"
+	userController "github.com/facugarces29/ArquiSoftware/controllers/user"
 )
 
 func MapUrls() {

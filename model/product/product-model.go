@@ -1,7 +1,7 @@
 package models
 
 import (
-	orderdetail "Proyecto/ArquiSoftware/model/order"
+	orderdetail "github.com/facugarces29/ArquiSoftware/model/order"
 )
 
 type Product struct {

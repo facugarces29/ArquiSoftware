@@ -1,7 +1,7 @@
 package models
 
 import (
-	user "Proyecto/ArquiSoftware/model/user"
+	user "github.com/facugarces29/ArquiSoftware/model/user"
 
 	"github.com/jinzhu/gorm"
 )

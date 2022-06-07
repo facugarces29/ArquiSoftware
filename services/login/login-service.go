@@ -1,10 +1,10 @@
 package services
 
 import (
-	userCliente "Proyecto/ArquiSoftware/clients/user"
-	loginDto "Proyecto/ArquiSoftware/dto/login"
-	userDto "Proyecto/ArquiSoftware/dto/user"
-	model "Proyecto/ArquiSoftware/model/user"
+	userCliente "github.com/facugarces29/ArquiSoftware/clients/user"
+	loginDto "github.com/facugarces29/ArquiSoftware/dto/login"
+	userDto "github.com/facugarces29/ArquiSoftware/dto/user"
+	model "github.com/facugarces29/ArquiSoftware/model/user"
 
 	log "github.com/sirupsen/logrus"
 )

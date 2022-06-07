@@ -4,9 +4,9 @@ import (
 	"github.com/jinzhu/gorm"
 	log "github.com/sirupsen/logrus"
 
-	addressModel "Proyecto/ArquiSoftware/model/address"
-	productModel "Proyecto/ArquiSoftware/model/product"
-	userModel "Proyecto/ArquiSoftware/model/user"
+	addressModel "github.com/facugarces29/ArquiSoftware/model/address"
+	productModel "github.com/facugarces29/ArquiSoftware/model/product"
+	userModel "github.com/facugarces29/ArquiSoftware/model/user"
 )
 
 func InsertData(db *gorm.DB) {

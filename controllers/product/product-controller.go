@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	service "Proyecto/ArquiSoftware/services/product"
+	service "github.com/facugarces29/ArquiSoftware/services/product"
 	"net/http"
 	"strconv"
 

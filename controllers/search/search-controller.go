@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	service "Proyecto/ArquiSoftware/services/search"
+	service "github.com/facugarces29/ArquiSoftware/services/search"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

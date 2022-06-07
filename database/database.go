@@ -1,21 +1,21 @@
 package database
 
 import (
-	userClient "Proyecto/ArquiSoftware/clients/user"
-	userModel "Proyecto/ArquiSoftware/model/user"
+	userClient "github.com/facugarces29/ArquiSoftware/clients/user"
+	userModel "github.com/facugarces29/ArquiSoftware/model/user"
 
-	productClient "Proyecto/ArquiSoftware/clients/product"
-	productModel "Proyecto/ArquiSoftware/model/product"
+	productClient "github.com/facugarces29/ArquiSoftware/clients/product"
+	productModel "github.com/facugarces29/ArquiSoftware/model/product"
 
-	addressClient "Proyecto/ArquiSoftware/clients/address"
-	addressModel "Proyecto/ArquiSoftware/model/address"
+	addressClient "github.com/facugarces29/ArquiSoftware/clients/address"
+	addressModel "github.com/facugarces29/ArquiSoftware/model/address"
 
-	orderClient "Proyecto/ArquiSoftware/clients/order"
-	orderModel "Proyecto/ArquiSoftware/model/order"
+	orderClient "github.com/facugarces29/ArquiSoftware/clients/order"
+	orderModel "github.com/facugarces29/ArquiSoftware/model/order"
 
-	searchClient "Proyecto/ArquiSoftware/clients/search"
+	searchClient "github.com/facugarces29/ArquiSoftware/clients/search"
 
-	data "Proyecto/ArquiSoftware/database/data"
+	data "github.com/facugarces29/ArquiSoftware/database/data"
 
 	"os"
 
