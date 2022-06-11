@@ -15,6 +15,8 @@ import (
 
 	searchClient "github.com/facugarces29/ArquiSoftware/clients/search"
 
+	homeClient "github.com/facugarces29/ArquiSoftware/clients/home"
+
 	data "github.com/facugarces29/ArquiSoftware/database/data"
 
 	"os"
@@ -55,6 +57,7 @@ func init() {
 	addressClient.Db = db
 	orderClient.Db = db
 	searchClient.Db = db
+	homeClient.Db = db
 
 }
 

@@ -1,6 +1,7 @@
 package app
 
 import (
+	homeController "github.com/facugarces29/ArquiSoftware/controllers/home"
 	loginController "github.com/facugarces29/ArquiSoftware/controllers/login"
 	productController "github.com/facugarces29/ArquiSoftware/controllers/product"
 	searchController "github.com/facugarces29/ArquiSoftware/controllers/search"
@@ -25,4 +26,7 @@ func MapUrls() {
 
 	// Search Mapping
 	router.GET("/search/:param", searchController.GetProductsBySearchParam)
+
+	// Home Mapping
+	router.GET("/home", homeController.GetHomeProducts)
 }

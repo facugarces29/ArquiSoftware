@@ -1,6 +1,9 @@
 package clients
 
 import (
+	"errors"
+	"log"
+
 	model "github.com/facugarces29/ArquiSoftware/model/product"
 
 	"github.com/jinzhu/gorm"
@@ -13,11 +16,27 @@ func GetProductsBySearchParam(param string) (model.Products, error) {
 
 	param = "%" + param + "%"
 
-	Db.Where("description LIKE ?", param).Find(&products)
+	res1 := Db.Where("description LIKE ?", param).Find(&products)
 
-	Db.Where("name LIKE ?", param).Find(&products)
+	err := res1.Error
+	if err != nil {
+		log.Println(err)
+		return products, err
+	}
 
-	//como saber si el modelo esta vacio?? ---> error
+	res2 := Db.Where("name LIKE ?", param).Find(&products)
+
+	err = res2.Error
+
+	if err != nil {
+		log.Println(err)
+		return products, err
+	}
+
+	if len(products) == 0 {
+		err := errors.New("nothing found")
+		return products, err
+	}
 
 	return products, nil
 }

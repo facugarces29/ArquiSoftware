@@ -45,7 +45,7 @@ func InsertData(db *gorm.DB) {
 
 	if err != nil {
 		db.Create(&productModel.Product{CategoryID: 1, Name: "Asus Laptop", Description: "Personal laptop, intel i5, 8gb ram, fullhd screen, windows 10", Price: 100000, Stock: 10, Image: ""})
-		db.Create(&productModel.Product{CategoryID: 1, Name: "Logitech Mouse", Description: "Gaming Mouse 16000dpi", Price: 8000, Stock: 15, Image: ""})
+		db.Create(&productModel.Product{CategoryID: 1, Name: "Logitech Mouse", Description: "Gaming Mouse 16000dpi", Price: 8000, Stock: 15, Image: "https://resource.logitechg.com/w_1000,c_limit,q_auto,f_auto,dpr_auto/d_transparent.gif/content/dam/products/gaming/gaming-mice/g305-lightspeed-wireless-gaming-mouse/g304-g305-lightspeed-wireless-gaming-mouse21.png?v=1"})
 		db.Create(&productModel.Product{CategoryID: 1, Name: "Hyperx Keyboard", Description: "Keyboard rgb, cherry, us distribution", Price: 12000, Stock: 4, Image: ""})
 		db.Create(&productModel.Product{CategoryID: 1, Name: "Samsung Monitor", Description: "Resolution: 1920x1080, 144hz, 32 inches", Price: 125000, Stock: 2, Image: ""})
 		db.Create(&productModel.Product{CategoryID: 3, Name: "Randers Multigym", Description: "75kg, more than 30 exercises, aluminium", Price: 85000, Stock: 3, Image: ""})
