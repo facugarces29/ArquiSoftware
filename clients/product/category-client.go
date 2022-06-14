@@ -6,21 +6,32 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func GetCategoryById(id int) model.Category {
+func GetCategoryById(id int) (model.Category, error) {
 	var category model.Category
 
-	Db.Where("category_id = ?", id).First(&category)
+	err := Db.Where("category_id = ?", id).First(&category).Error
+
+	if err != nil {
+		log.Println(err)
+		return category, err
+	}
+
 	log.Debug("Category: ", category)
 
-	return category
+	return category, nil
 }
 
-func GetCategories() model.Categories {
+func GetCategories() (model.Categories, error) {
 	var categories model.Categories
 
-	Db.Find(&categories)
+	err := Db.Find(&categories).Error
+
+	if err != nil {
+		log.Println(err)
+		return categories, err
+	}
 
 	log.Debug("Products: ", categories)
 
-	return categories
+	return categories, nil
 }

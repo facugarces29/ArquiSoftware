@@ -3,15 +3,13 @@ package services
 import (
 	userCliente "github.com/facugarces29/ArquiSoftware/clients/user"
 	dto "github.com/facugarces29/ArquiSoftware/dto/user"
-	model "github.com/facugarces29/ArquiSoftware/model/user"
 )
 
 type userService struct{}
 
 type userServiceInterface interface {
-	GetUserById(id int) dto.UserDto
-	GetUserByUsername(string) (dto.UserDto, error)
-	GetUsers() dto.UsersDto
+	GetUserById(id int) (dto.UserDto, error)
+	GetUsers() (dto.UsersDto, error)
 }
 
 var (
@@ -22,13 +20,16 @@ func init() {
 	UserService = &userService{}
 }
 
-func (s *userService) GetUserById(id int) dto.UserDto {
+func (s *userService) GetUserById(id int) (dto.UserDto, error) {
 
-	var user model.User = userCliente.GetUserById(id)
+	user, err := userCliente.GetUserById(id)
 	var userDto dto.UserDto
 
+	if err != nil {
+		return userDto, err
+	}
 	if user.UserID == 0 {
-		return userDto
+		return userDto, nil
 	}
 	userDto.Name = user.Name
 	userDto.LastName = user.LastName
@@ -36,12 +37,16 @@ func (s *userService) GetUserById(id int) dto.UserDto {
 	userDto.Id = user.UserID
 	userDto.Email = user.Email
 	userDto.Password = user.Pwd
-	return userDto
+	return userDto, nil
 }
 
-func (s *userService) GetUsers() dto.UsersDto {
-	var users model.Users = userCliente.GetUsers()
+func (s *userService) GetUsers() (dto.UsersDto, error) {
+	users, err := userCliente.GetUsers()
 	var usersDto dto.UsersDto
+
+	if err != nil {
+		return usersDto, err
+	}
 
 	for _, user := range users {
 		var userDto dto.UserDto
@@ -54,7 +59,7 @@ func (s *userService) GetUsers() dto.UsersDto {
 		usersDto = append(usersDto, userDto)
 	}
 
-	return usersDto
+	return usersDto, nil
 }
 
 func (s *userService) GetUserByUsername(username string) (dto.UserDto, error) {

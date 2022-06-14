@@ -9,13 +9,19 @@ import (
 
 var Db *gorm.DB
 
-func GetUserById(id int) model.User {
+func GetUserById(id int) (model.User, error) {
 	var user model.User
 
-	Db.Where("user_id = ?", id).First(&user)
+	err := Db.Where("user_id = ?", id).First(&user).Error
+
+	if err != nil {
+		log.Println(err)
+		return user, err
+	}
+
 	log.Debug("User: ", user)
 
-	return user
+	return user, nil
 }
 
 func GetUserByUsername(username string) (model.User, error) {
@@ -32,12 +38,18 @@ func GetUserByUsername(username string) (model.User, error) {
 	return user, nil
 }
 
-func GetUsers() model.Users {
+func GetUsers() (model.Users, error) {
+
 	var users model.Users
 
-	Db.Find(&users)
+	err := Db.Find(&users).Error
+
+	if err != nil {
+		log.Println(err)
+		return users, err
+	}
 
 	log.Debug("Users: ", users)
 
-	return users
+	return users, nil
 }
