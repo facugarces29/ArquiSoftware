@@ -1,8 +1,9 @@
 package controllers
 
 import (
-	service "github.com/facugarces29/ArquiSoftware/services/login"
 	"net/http"
+
+	service "github.com/facugarces29/ArquiSoftware/services/login"
 
 	dto "github.com/facugarces29/ArquiSoftware/dto/login"
 
@@ -12,17 +13,22 @@ import (
 
 func Login(c *gin.Context) {
 	var loginDto dto.LoginDto
-	err := c.BindJSON(&loginDto)
+	err1 := c.BindJSON(&loginDto)
 
 	// Error Parsing json param
-	if err != nil {
-		log.Error(err.Error())
-		c.JSON(http.StatusBadRequest, err.Error())
+	if err1 != nil {
+		log.Error(err1.Error())
+		c.JSON(http.StatusBadRequest, err1.Error())
 		return
 	}
 
-	userDto := service.LoginService.Login(loginDto)
+	userDto, err2 := service.LoginService.Login(loginDto)
 	// Error del Insert
+
+	if err2 != nil {
+		c.JSON(http.StatusBadRequest, userDto)
+		return
+	}
 
 	c.JSON(http.StatusCreated, userDto)
 }

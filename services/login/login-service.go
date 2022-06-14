@@ -1,10 +1,11 @@
 package services
 
 import (
+	"errors"
+
 	userCliente "github.com/facugarces29/ArquiSoftware/clients/user"
 	loginDto "github.com/facugarces29/ArquiSoftware/dto/login"
 	userDto "github.com/facugarces29/ArquiSoftware/dto/user"
-	model "github.com/facugarces29/ArquiSoftware/model/user"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -12,7 +13,7 @@ import (
 type loginService struct{}
 
 type loginServiceInterface interface {
-	Login(loginDto.LoginDto) userDto.UserDto
+	Login(loginDto.LoginDto) (userDto.UserDto, error)
 }
 
 var (
@@ -23,20 +24,23 @@ func init() {
 	LoginService = &loginService{}
 }
 
-func (s *loginService) Login(login loginDto.LoginDto) userDto.UserDto {
+func (s *loginService) Login(login loginDto.LoginDto) (userDto.UserDto, error) {
 
-	id := login.Id
+	username := login.Username
 	pass := login.Password
 	log.Debug("pass", pass)
-	var user model.User = userCliente.GetUserById(id)
+	user, err := userCliente.GetUserByUsername(username)
 	var userDto userDto.UserDto
 
-	if user.UserID == 0 {
-		return userDto
+	if err != nil {
+		log.Println(err)
+		return userDto, err
 	}
 
 	if user.Pwd != pass {
-		return userDto
+		err = errors.New("username or password incorrect")
+		log.Println(err)
+		return userDto, err
 	}
 
 	userDto.Name = user.Name
@@ -46,6 +50,6 @@ func (s *loginService) Login(login loginDto.LoginDto) userDto.UserDto {
 	userDto.Email = user.Email
 	userDto.Password = user.Pwd
 
-	return userDto
+	return userDto, nil
 
 }
