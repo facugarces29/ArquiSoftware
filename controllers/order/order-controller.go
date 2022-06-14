@@ -1,24 +1,23 @@
 package controllers
 
 import (
-	service "github.com/facugarces29/ArquiSoftware/services/product"
 	"net/http"
 	"strconv"
 
+	service "github.com/facugarces29/ArquiSoftware/services/order"
+
 	"github.com/gin-gonic/gin"
-	log "github.com/sirupsen/logrus"
 )
 
-func GetProductById(c *gin.Context) {
-	log.Debug("User id to load: " + c.Param("id"))
-
+func GetOrdersByUserId(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
-	productDto, err := service.ProductService.GetProductById(id)
+
+	ordersDto, err := service.OrderService.GetOrdersByUserId(id)
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, productDto)
+		c.JSON(http.StatusBadRequest, ordersDto)
 		return
 	}
-	
-	c.JSON(http.StatusOK, productDto)
+
+	c.JSON(http.StatusOK, ordersDto)
 }

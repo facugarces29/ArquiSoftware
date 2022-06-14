@@ -3,6 +3,7 @@ package app
 import (
 	homeController "github.com/facugarces29/ArquiSoftware/controllers/home"
 	loginController "github.com/facugarces29/ArquiSoftware/controllers/login"
+	orderController "github.com/facugarces29/ArquiSoftware/controllers/order"
 	productController "github.com/facugarces29/ArquiSoftware/controllers/product"
 	searchController "github.com/facugarces29/ArquiSoftware/controllers/search"
 	userController "github.com/facugarces29/ArquiSoftware/controllers/user"
@@ -29,4 +30,7 @@ func MapUrls() {
 
 	// Home Mapping
 	router.GET("/home", homeController.GetHomeProducts)
+
+	// Order Mapping
+	router.GET("/order/:id", orderController.GetOrdersByUserId)
 }

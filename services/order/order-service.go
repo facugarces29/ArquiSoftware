@@ -11,6 +11,7 @@ type orderService struct{}
 type orderServiceInterface interface {
 	InsertOrder(orderDto dto.InsertOrderDto) (dto.OrderDto, error)
 	UpdateOrder(orderDto dto.UpdateOrderDto) (dto.OrderDto, error)
+	GetOrdersByUserId(int) (dto.OrdersDto, error)
 }
 
 var (
@@ -51,7 +52,6 @@ func (s *orderService) UpdateOrder(orderDto dto.UpdateOrderDto) (dto.OrderDto, e
 	order.ID = orderDto.Id
 	order.Amount = orderDto.Amount
 
-
 	order, err := orderCliente.UpdateOrder(order)
 
 	if err != nil {
@@ -62,4 +62,24 @@ func (s *orderService) UpdateOrder(orderDto dto.UpdateOrderDto) (dto.OrderDto, e
 	returnOrderDto.Amount = order.Amount
 
 	return returnOrderDto, nil
+}
+
+func (s *orderService) GetOrdersByUserId(idUser int) (dto.OrdersDto, error) {
+	orders, err := orderCliente.GetOrdersByUserId(idUser)
+
+	var ordersDto dto.OrdersDto
+
+	if err != nil {
+		return ordersDto, err
+	}
+
+	for _, order := range orders {
+		var orderDto dto.OrderDto
+		orderDto.Id = order.ID
+		orderDto.UserId = order.UserID
+		orderDto.Amount = order.Amount
+		ordersDto = append(ordersDto, orderDto)
+	}
+
+	return ordersDto, nil
 }
