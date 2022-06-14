@@ -9,21 +9,32 @@ import (
 
 var Db *gorm.DB
 
-func GetAddressById(id int) model.Address {
+func GetAddressById(id int) (model.Address, error) {
 	var address model.Address
 
-	Db.Where("id = ?", id).First(&address)
+	err := Db.Where("id = ?", id).First(&address).Error
+
+	if err != nil {
+		log.Println(err)
+		return address, err
+	}
+
 	log.Debug("Address: ", address)
 
-	return address
+	return address, nil
 }
 
-func GetAddresses() model.Addresses {
+func GetAddresses() (model.Addresses, error) {
 	var addresses model.Addresses
 
-	Db.Find(&addresses)
+	err := Db.Find(&addresses).Error
+
+	if err != nil {
+		log.Println(err)
+		return addresses, err
+	}
 
 	log.Debug("Addresses: ", addresses)
 
-	return addresses
+	return addresses, nil
 }

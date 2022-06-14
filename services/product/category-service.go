@@ -3,14 +3,13 @@ package services
 import (
 	categoryCliente "github.com/facugarces29/ArquiSoftware/clients/product"
 	dto "github.com/facugarces29/ArquiSoftware/dto/product"
-	model "github.com/facugarces29/ArquiSoftware/model/product"
 )
 
 type categoryService struct{}
 
 type categoryServiceInterface interface {
-	GetCategoryById(id int) dto.CategoryDto
-	GetCategories() dto.CategoriesDto
+	GetCategoryById(id int) (dto.CategoryDto, error)
+	GetCategories() (dto.CategoriesDto, error)
 }
 
 var (
@@ -21,24 +20,33 @@ func init() {
 	CategoryService = &categoryService{}
 }
 
-func (s *categoryService) GetCategoryById(id int) dto.CategoryDto {
+func (s *categoryService) GetCategoryById(id int) (dto.CategoryDto, error) {
 
-	var category model.Category = categoryCliente.GetCategoryById(id)
+	category, err := categoryCliente.GetCategoryById(id)
+
 	var categoryDto dto.CategoryDto
 
+	if err != nil {
+		return categoryDto, err
+	}
+
 	if category.CategoryID == 0 {
-		return categoryDto
+		return categoryDto, nil
 	}
 
 	categoryDto.Id = category.CategoryID
 	categoryDto.Name = category.Name
 
-	return categoryDto
+	return categoryDto, nil
 }
 
-func (s *categoryService) GetCategories() dto.CategoriesDto {
-	var categories model.Categories = categoryCliente.GetCategories()
+func (s *categoryService) GetCategories() (dto.CategoriesDto, error) {
+	categories, err := categoryCliente.GetCategories()
 	var categoriesDto dto.CategoriesDto
+
+	if err != nil {
+		return categoriesDto, err
+	}
 
 	for _, category := range categories {
 		var categoryDto dto.CategoryDto
@@ -48,5 +56,5 @@ func (s *categoryService) GetCategories() dto.CategoriesDto {
 		categoriesDto = append(categoriesDto, categoryDto)
 	}
 
-	return categoriesDto
+	return categoriesDto, nil
 }

@@ -1,9 +1,10 @@
 package controllers
 
 import (
-	service "github.com/facugarces29/ArquiSoftware/services/product"
 	"net/http"
 	"strconv"
+
+	service "github.com/facugarces29/ArquiSoftware/services/product"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
@@ -13,13 +14,23 @@ func GetCategoryById(c *gin.Context) {
 	log.Debug("Category id to load: " + c.Param("id"))
 
 	id, _ := strconv.Atoi(c.Param("id"))
-	var categoryDto = service.CategoryService.GetCategoryById(id)
+	categoryDto, err := service.CategoryService.GetCategoryById(id)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, categoryDto)
+		return
+	}
 
 	c.JSON(http.StatusOK, categoryDto)
 }
 
 func GetCategories(c *gin.Context) {
-	var categoriesDto = service.CategoryService.GetCategories()
+	categoriesDto, err := service.CategoryService.GetCategories()
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, categoriesDto)
+		return
+	}
 
 	c.JSON(http.StatusOK, categoriesDto)
 }
