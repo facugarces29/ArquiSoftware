@@ -1,25 +1,19 @@
 package clients
-import (
-	model "github.com/facugarces29/ArquiSoftware/model/order"
 
-	log "github.com/sirupsen/logrus"
+import (
+	"log"
+
+	model "github.com/facugarces29/ArquiSoftware/model/order"
 )
 
-func GetOrderDetailById(id int) model.OrderDetail {
-	var orderDetail model.OrderDetail
+func InsertOrderDetail(orderDetail model.OrderDetail) (model.OrderDetail, error) {
 
-	Db.Where("order_detail_id = ?", id).First(&orderDetail)
-	log.Debug("Order Detail: ", orderDetail)
+	err := Db.Create(&orderDetail).Error
 
-	return orderDetail
-}
+	if err != nil {
+		log.Println(err)
+		return orderDetail, err
+	}
 
-func GetOrderDetails() model.OrderDetails {
-	var orderDetails model.OrderDetails
-
-	Db.Find(&orderDetails)
-
-	log.Debug("Order details: ", orderDetails)
-
-	return orderDetails
+	return orderDetail, nil
 }
