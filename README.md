@@ -25,6 +25,6 @@
 - /buy                          PUT     
 - /products                     GET     done
 - /products/:id                 GET     done
-- /categories                   GET     done 
+- /categories                   GET     done
 - /categories/:id               GET     done
 - /order                        GET 
