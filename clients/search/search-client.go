@@ -11,6 +11,7 @@ import (
 
 var Db *gorm.DB
 
+// corregir que no pise producto
 func GetProductsBySearchParam(param string) (model.Products, error) {
 	var products model.Products
 

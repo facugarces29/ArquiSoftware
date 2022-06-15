@@ -1,6 +1,7 @@
 package app
 
 import (
+	//ver
 	homeController "github.com/facugarces29/ArquiSoftware/controllers/home"
 	loginController "github.com/facugarces29/ArquiSoftware/controllers/login"
 	orderController "github.com/facugarces29/ArquiSoftware/controllers/order"
@@ -33,4 +34,5 @@ func MapUrls() {
 
 	// Order Mapping
 	router.GET("/order/:id", orderController.GetOrdersByUserId)
+	router.POST("/order", orderController.InsertOrder)
 }

@@ -4,15 +4,33 @@ import (
 	"errors"
 	"log"
 
-	model "github.com/facugarces29/ArquiSoftware/model/order"
+	orderModel "github.com/facugarces29/ArquiSoftware/model/order"
+	userModel "github.com/facugarces29/ArquiSoftware/model/user"
 
 	"github.com/jinzhu/gorm"
 )
 
 var Db *gorm.DB
 
-func InsertOrder(order model.Order) (model.Order, error) {
-	err := Db.Create(&order).Error
+func InsertOrder(order orderModel.Order) (orderModel.Order, error) {
+
+	var user userModel.User
+
+	userId := order.UserID
+	err := Db.Where("user_id = ?", userId).First(&user).Error
+
+	if err != nil {
+		log.Println(err)
+		return order, err
+	}
+
+	if user.UserID == 0 {
+		err = errors.New("user not found")
+		log.Println(err)
+		return order, err
+	}
+
+	err = Db.Create(&order).Error
 
 	if err != nil {
 		log.Println(err)
@@ -22,8 +40,8 @@ func InsertOrder(order model.Order) (model.Order, error) {
 	return order, nil
 }
 
-func GetOrdersByUserId(idUser int) (model.Orders, error) {
-	var orders model.Orders
+func GetOrdersByUserId(idUser int) (orderModel.Orders, error) {
+	var orders orderModel.Orders
 
 	err := Db.Where("user_id = ?", idUser).Find(&orders).Error
 
@@ -38,8 +56,9 @@ func GetOrdersByUserId(idUser int) (model.Orders, error) {
 	}
 
 	return orders, nil
-
 }
+
+//realizar un get order by id de order
 
 /*func GetOrdersByUserId(id int) model.Order {
 	var order model.Order

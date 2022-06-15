@@ -22,24 +22,23 @@ func init() {
 	OrderService = &orderService{}
 }
 
-func (s *orderService) InsertOrder(orderDto dto.InsertOrderDto) (dto.OrderDto, error) {
+func (s *orderService) InsertOrder(insertOrderDto dto.InsertOrderDto) (dto.OrderDto, error) {
 
 	var order model.Order
-	var returnOrderDto dto.OrderDto
+	var orderDto dto.OrderDto
 
-	//user.Name = userDto.Name
-
-	order.UserID = orderDto.UserId
+	order.UserID = insertOrderDto.UserId
 
 	order, err := orderCliente.InsertOrder(order)
 
 	if err != nil {
-		return returnOrderDto, err
+		return orderDto, err
 	}
 
-	returnOrderDto.Id = order.ID
+	orderDto.Id = order.ID
+	orderDto.UserId = order.UserID
 
-	return returnOrderDto, nil
+	return orderDto, nil
 }
 
 func (s *orderService) UpdateOrder(orderDto dto.UpdateOrderDto) (dto.OrderDto, error) {
