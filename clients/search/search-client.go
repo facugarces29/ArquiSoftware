@@ -11,23 +11,12 @@ import (
 
 var Db *gorm.DB
 
-// corregir que no pise producto
 func GetProductsBySearchParam(param string) (model.Products, error) {
 	var products model.Products
 
 	param = "%" + param + "%"
 
-	res1 := Db.Where("description LIKE ?", param).Find(&products)
-
-	err := res1.Error
-	if err != nil {
-		log.Println(err)
-		return products, err
-	}
-
-	res2 := Db.Where("name LIKE ?", param).Find(&products)
-
-	err = res2.Error
+	err := Db.Find(&products, "name LIKE ? OR description LIKE ?", param, param).Error
 
 	if err != nil {
 		log.Println(err)
