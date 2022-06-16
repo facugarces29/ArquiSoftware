@@ -12,6 +12,7 @@ import (
 
 var Db *gorm.DB
 
+// InsertOrder inserts an order in database
 func InsertOrder(order orderModel.Order) (orderModel.Order, error) {
 
 	var user userModel.User
@@ -40,7 +41,9 @@ func InsertOrder(order orderModel.Order) (orderModel.Order, error) {
 	return order, nil
 }
 
+// GetOrdersByUserId returns orders from user id
 func GetOrdersByUserId(idUser int) (orderModel.Orders, error) {
+
 	var orders orderModel.Orders
 
 	err := Db.Where("user_id = ?", idUser).Find(&orders).Error
@@ -56,19 +59,5 @@ func GetOrdersByUserId(idUser int) (orderModel.Orders, error) {
 	}
 
 	return orders, nil
+
 }
-
-//realizar un get order by id de order
-
-/*func GetOrdersByUserId(id int) model.Order {
-	var order model.Order
-
-	return order
-
-
-
-
-** db.Model(&User{}).Select("users.name, emails.email").Joins("left join emails on emails.user_id = users.id").Scan(&result{})
-// SELECT users.name, emails.email FROM `users` left join emails on emails.user_id = users.id
-
-}*/

@@ -1,7 +1,8 @@
 package services
 
 import (
-	productCliente "github.com/facugarces29/ArquiSoftware/clients/search"
+	productCliente "github.com/facugarces29/ArquiSoftware/clients/product"
+	searchCliente "github.com/facugarces29/ArquiSoftware/clients/search"
 	dto "github.com/facugarces29/ArquiSoftware/dto/product"
 )
 
@@ -21,7 +22,7 @@ func init() {
 
 func (s *searchService) GetProductsBySearchParam(param string) (dto.ProductsDto, error) {
 
-	products, err := productCliente.GetProductsBySearchParam(param)
+	products, err := searchCliente.GetProductsBySearchParam(param)
 
 	var productsDto dto.ProductsDto
 
@@ -31,12 +32,20 @@ func (s *searchService) GetProductsBySearchParam(param string) (dto.ProductsDto,
 
 	for _, product := range products {
 		var productDto dto.ProductDto
+
+		category, err := productCliente.GetCategoryById(int(product.CategoryID))
+
+		if err != nil {
+			return productsDto, err
+		}
+
 		productDto.Id = product.ProductID
 		productDto.Name = product.Name
 		productDto.Description = product.Description
 		productDto.Price = product.Price
 		productDto.Stock = product.Stock
 		productDto.Image = product.Image
+		productDto.Category = category.Name
 
 		productsDto = append(productsDto, productDto)
 	}

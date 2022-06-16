@@ -9,8 +9,7 @@ import (
 type orderService struct{}
 
 type orderServiceInterface interface {
-	InsertOrder(orderDto dto.InsertOrderDto) (dto.OrderDto, error)
-	UpdateOrder(orderDto dto.UpdateOrderDto) (dto.OrderDto, error)
+	InsertOrder(dto.InsertOrderDto) (dto.OrderDto, error)
 	GetOrdersByUserId(int) (dto.OrdersDto, error)
 }
 
@@ -41,28 +40,6 @@ func (s *orderService) InsertOrder(insertOrderDto dto.InsertOrderDto) (dto.Order
 	return orderDto, nil
 }
 
-func (s *orderService) UpdateOrder(orderDto dto.UpdateOrderDto) (dto.OrderDto, error) {
-
-	var order model.Order
-	var returnOrderDto dto.OrderDto
-
-	//user.Name = userDto.Name
-
-	order.ID = orderDto.Id
-	order.Amount = orderDto.Amount
-
-	order, err := orderCliente.UpdateOrder(order)
-
-	if err != nil {
-		return returnOrderDto, err
-	}
-
-	returnOrderDto.Id = order.ID
-	returnOrderDto.Amount = order.Amount
-
-	return returnOrderDto, nil
-}
-
 func (s *orderService) GetOrdersByUserId(idUser int) (dto.OrdersDto, error) {
 	orders, err := orderCliente.GetOrdersByUserId(idUser)
 
@@ -76,7 +53,6 @@ func (s *orderService) GetOrdersByUserId(idUser int) (dto.OrdersDto, error) {
 		var orderDto dto.OrderDto
 		orderDto.Id = order.ID
 		orderDto.UserId = order.UserID
-		orderDto.Amount = order.Amount
 		ordersDto = append(ordersDto, orderDto)
 	}
 

@@ -12,7 +12,7 @@ import (
 )
 
 func GetOrdersByUserId(c *gin.Context) {
-	id, _ := strconv.Atoi(c.Param("id"))
+	id, _ := strconv.Atoi(c.Param("userId"))
 
 	ordersDto, err := service.OrderService.GetOrdersByUserId(id)
 

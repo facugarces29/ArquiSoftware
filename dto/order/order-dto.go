@@ -1,9 +1,8 @@
 package dto
 
 type OrderDto struct {
-	Id              uint    `json:"id"`
-	UserId          uint    `json:"user_id"`
-	Amount          float64 `json:"amount"`
+	Id              uint `json:"id"`
+	UserId          uint `json:"user_id"`
 	OrderDetailsDto `json:"order_details"`
 }
 

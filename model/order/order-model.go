@@ -9,7 +9,6 @@ import (
 type Order struct {
 	gorm.Model
 	UserID       uint
-	Amount       float64 `gorm:"type:decimal(10,2);not null"`
 	User         user.User
 	OrderDetails OrderDetails
 }

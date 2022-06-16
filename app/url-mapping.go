@@ -10,7 +10,9 @@ import (
 	userController "github.com/facugarces29/ArquiSoftware/controllers/user"
 )
 
+// MapUrls maps the urls
 func MapUrls() {
+
 	// Users Mapping
 	router.GET("/user/:id", userController.GetUserById)
 	router.GET("/user", userController.GetUsers)
@@ -33,6 +35,7 @@ func MapUrls() {
 	router.GET("/home", homeController.GetHomeProducts)
 
 	// Order Mapping
-	router.GET("/order/:id", orderController.GetOrdersByUserId)
+	router.GET("/order/:userId", orderController.GetOrdersByUserId)
 	router.POST("/order", orderController.InsertOrder)
+
 }
