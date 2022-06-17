@@ -11,7 +11,9 @@ import (
 type orderDetailService struct{}
 
 type orderDetailServiceInterface interface {
-	InsertOrderDetail(orderDetailDto dto.OrderDetailDto) (dto.OrderDetailDto, error)
+	InsertOrderDetail(dto.OrderDetailDto) (dto.OrderDetailDto, error)
+	GetOrderDetailsByOrderId(int) (dto.OrderDetailsDto, error)
+	GetOrderDetails() (dto.OrderDetailsDto, error)
 }
 
 var (
@@ -24,6 +26,7 @@ func init() {
 
 func (s *orderDetailService) InsertOrderDetail(orderDetailDto dto.OrderDetailDto) (dto.OrderDetailDto, error) {
 	var orderDetail model.OrderDetail
+	var orderDetailResponseDto dto.OrderDetailDto
 
 	orderDetail.OrderID = orderDetailDto.OrderId
 	orderDetail.ProductID = orderDetailDto.ProductId
@@ -37,5 +40,56 @@ func (s *orderDetailService) InsertOrderDetail(orderDetailDto dto.OrderDetailDto
 		return orderDetailDto, err
 	}
 
-	return orderDetailDto, nil
+	orderDetailResponseDto.Id = orderDetail.OrderDetailID
+	orderDetailResponseDto.OrderId = orderDetail.OrderID
+	orderDetailResponseDto.ProductId = orderDetail.ProductID
+	orderDetailResponseDto.Price = orderDetail.Price
+	orderDetailResponseDto.Quantity = orderDetail.Quantity
+
+	return orderDetailResponseDto, nil
+}
+
+func (s *orderDetailService) GetOrderDetailsByOrderId(id int) (dto.OrderDetailsDto, error) {
+	var orderDetails model.OrderDetails
+	var orderDetailsDto dto.OrderDetailsDto
+
+	orderDetails, err := orderDetailCliente.GetOrderDetailsByOrderId(id)
+
+	if err != nil {
+		return orderDetailsDto, err
+	}
+
+	for _, orderDetail := range orderDetails {
+		var orderDetailDto dto.OrderDetailDto
+		orderDetailDto.Id = orderDetail.OrderDetailID
+		orderDetailDto.OrderId = orderDetail.OrderID
+		orderDetailDto.Price = orderDetail.Price
+		orderDetailDto.ProductId = orderDetail.ProductID
+		orderDetailDto.Quantity = orderDetail.Quantity
+		orderDetailsDto = append(orderDetailsDto, orderDetailDto)
+	}
+
+	return orderDetailsDto, nil
+}
+
+func (s *orderDetailService) GetOrderDetails() (dto.OrderDetailsDto, error) {
+	var orderDetailsDto dto.OrderDetailsDto
+
+	orderDetails, err := orderDetailCliente.GetOrderDetails()
+
+	if err != nil {
+		return orderDetailsDto, err
+	}
+
+	for _, orderDetail := range orderDetails {
+		var orderDetailDto dto.OrderDetailDto
+		orderDetailDto.Id = orderDetail.OrderDetailID
+		orderDetailDto.OrderId = orderDetail.OrderID
+		orderDetailDto.Price = orderDetail.Price
+		orderDetailDto.ProductId = orderDetail.ProductID
+		orderDetailDto.Quantity = orderDetail.Quantity
+		orderDetailsDto = append(orderDetailsDto, orderDetailDto)
+	}
+
+	return orderDetailsDto, nil
 }

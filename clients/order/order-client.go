@@ -41,6 +41,28 @@ func InsertOrder(order orderModel.Order) (orderModel.Order, error) {
 	return order, nil
 }
 
+// UpdateOrder updates an order in database
+
+// InsertOrder returns all orders in database
+func GetOrders() (orderModel.Orders, error) {
+	var orders orderModel.Orders
+
+	err := Db.Find(&orders).Error
+
+	if err != nil {
+		log.Println(err)
+		return orders, err
+	}
+
+	if len(orders) == 0 {
+		err = errors.New("nothing found")
+		log.Println(err)
+		return orders, err
+	}
+
+	return orders, nil
+}
+
 // GetOrdersByUserId returns orders from user id
 func GetOrdersByUserId(idUser int) (orderModel.Orders, error) {
 

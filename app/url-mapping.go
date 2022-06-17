@@ -35,7 +35,12 @@ func MapUrls() {
 	router.GET("/home", homeController.GetHomeProducts)
 
 	// Order Mapping
+	router.GET("/order", orderController.GetOrders)
 	router.GET("/order/:userId", orderController.GetOrdersByUserId)
 	router.POST("/order", orderController.InsertOrder)
 
+	// Order Detail Mapping
+	router.POST("/order/detail", orderController.InsertOrderDetail)
+	router.GET("/order/detail", orderController.GetOrderDetails)
+	router.GET("/order/detail/:orderId", orderController.GetOrderDetailsByOrderId)
 }

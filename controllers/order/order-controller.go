@@ -11,6 +11,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+func GetOrders(c *gin.Context) {
+	ordersDto, err := service.OrderService.GetOrders()
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, ordersDto)
+		return
+	}
+
+	c.JSON(http.StatusOK, ordersDto)
+}
+
 func GetOrdersByUserId(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("userId"))
 
