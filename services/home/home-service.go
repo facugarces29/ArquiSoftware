@@ -1,9 +1,9 @@
 package services
 
 import (
-	homeCliente "github.com/facugarces29/ArquiSoftware/clients/home"
-	productCliente "github.com/facugarces29/ArquiSoftware/clients/product"
-	dto "github.com/facugarces29/ArquiSoftware/dto/product"
+	homeCliente "proyecto/ArquiSoftware/clients/home"
+	productCliente "proyecto/ArquiSoftware/clients/product"
+	dto "proyecto/ArquiSoftware/dto/product"
 )
 
 type homeService struct{}

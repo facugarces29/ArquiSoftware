@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/facugarces29/ArquiSoftware/app"
-	"github.com/facugarces29/ArquiSoftware/database"
+	"proyecto/ArquiSoftware/app"
+	"proyecto/ArquiSoftware/database"
 )
 
 func main() {

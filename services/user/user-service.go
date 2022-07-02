@@ -1,8 +1,8 @@
 package services
 
 import (
-	userCliente "github.com/facugarces29/ArquiSoftware/clients/user"
-	dto "github.com/facugarces29/ArquiSoftware/dto/user"
+	userCliente "proyecto/ArquiSoftware/clients/user"
+	dto "proyecto/ArquiSoftware/dto/user"
 )
 
 type userService struct{}

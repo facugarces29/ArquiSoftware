@@ -1,8 +1,8 @@
 package services
 
 import (
-	productCliente "github.com/facugarces29/ArquiSoftware/clients/product"
-	dto "github.com/facugarces29/ArquiSoftware/dto/product"
+	productCliente "proyecto/ArquiSoftware/clients/product"
+	dto "proyecto/ArquiSoftware/dto/product"
 )
 
 type productService struct{}

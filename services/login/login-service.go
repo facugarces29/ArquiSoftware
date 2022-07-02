@@ -3,9 +3,9 @@ package services
 import (
 	"errors"
 
-	userCliente "github.com/facugarces29/ArquiSoftware/clients/user"
-	loginDto "github.com/facugarces29/ArquiSoftware/dto/login"
-	userDto "github.com/facugarces29/ArquiSoftware/dto/user"
+	userCliente "proyecto/ArquiSoftware/clients/user"
+	loginDto "proyecto/ArquiSoftware/dto/login"
+	userDto "proyecto/ArquiSoftware/dto/user"
 
 	log "github.com/sirupsen/logrus"
 )

@@ -2,12 +2,12 @@ package app
 
 import (
 	//ver
-	homeController "github.com/facugarces29/ArquiSoftware/controllers/home"
-	loginController "github.com/facugarces29/ArquiSoftware/controllers/login"
-	orderController "github.com/facugarces29/ArquiSoftware/controllers/order"
-	productController "github.com/facugarces29/ArquiSoftware/controllers/product"
-	searchController "github.com/facugarces29/ArquiSoftware/controllers/search"
-	userController "github.com/facugarces29/ArquiSoftware/controllers/user"
+	homeController "proyecto/ArquiSoftware/controllers/home"
+	loginController "proyecto/ArquiSoftware/controllers/login"
+	orderController "proyecto/ArquiSoftware/controllers/order"
+	productController "proyecto/ArquiSoftware/controllers/product"
+	searchController "proyecto/ArquiSoftware/controllers/search"
+	userController "proyecto/ArquiSoftware/controllers/user"
 )
 
 // MapUrls maps the urls

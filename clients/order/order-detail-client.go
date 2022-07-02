@@ -4,7 +4,7 @@ import (
 	"errors"
 	"log"
 
-	model "github.com/facugarces29/ArquiSoftware/model/order"
+	model "proyecto/ArquiSoftware/model/order"
 )
 
 func InsertOrderDetail(orderDetail model.OrderDetail) (model.OrderDetail, error) {

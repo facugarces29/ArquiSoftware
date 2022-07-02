@@ -1,9 +1,9 @@
 package services
 
 import (
-	orderCliente "github.com/facugarces29/ArquiSoftware/clients/order"
-	dto "github.com/facugarces29/ArquiSoftware/dto/order"
-	model "github.com/facugarces29/ArquiSoftware/model/order"
+	orderCliente "proyecto/ArquiSoftware/clients/order"
+	dto "proyecto/ArquiSoftware/dto/order"
+	model "proyecto/ArquiSoftware/model/order"
 )
 
 type orderService struct{}

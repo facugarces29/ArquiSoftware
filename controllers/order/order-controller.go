@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strconv"
 
-	dto "github.com/facugarces29/ArquiSoftware/dto/order"
-	service "github.com/facugarces29/ArquiSoftware/services/order"
+	dto "proyecto/ArquiSoftware/dto/order"
+	service "proyecto/ArquiSoftware/services/order"
 
 	"github.com/gin-gonic/gin"
 )

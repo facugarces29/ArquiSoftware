@@ -3,7 +3,7 @@ package controllers
 import (
 	"net/http"
 
-	service "github.com/facugarces29/ArquiSoftware/services/home"
+	service "proyecto/ArquiSoftware/services/home"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"

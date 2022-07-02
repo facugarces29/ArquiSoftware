@@ -3,9 +3,9 @@ package controllers
 import (
 	"net/http"
 
-	service "github.com/facugarces29/ArquiSoftware/services/login"
+	service "proyecto/ArquiSoftware/services/login"
 
-	dto "github.com/facugarces29/ArquiSoftware/dto/login"
+	dto "proyecto/ArquiSoftware/dto/login"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"

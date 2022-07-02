@@ -4,8 +4,8 @@ import (
 	"errors"
 	"log"
 
-	orderModel "github.com/facugarces29/ArquiSoftware/model/order"
-	userModel "github.com/facugarces29/ArquiSoftware/model/user"
+	orderModel "proyecto/ArquiSoftware/model/order"
+	userModel "proyecto/ArquiSoftware/model/user"
 
 	"github.com/jinzhu/gorm"
 )

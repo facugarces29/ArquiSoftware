@@ -4,7 +4,7 @@ import (
 	"errors"
 	"log"
 
-	model "github.com/facugarces29/ArquiSoftware/model/product"
+	model "proyecto/ArquiSoftware/model/product"
 
 	"github.com/jinzhu/gorm"
 )

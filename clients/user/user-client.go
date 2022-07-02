@@ -1,7 +1,7 @@
 package clients
 
 import (
-	model "github.com/facugarces29/ArquiSoftware/model/user"
+	model "proyecto/ArquiSoftware/model/user"
 
 	"github.com/jinzhu/gorm"
 	log "github.com/sirupsen/logrus"

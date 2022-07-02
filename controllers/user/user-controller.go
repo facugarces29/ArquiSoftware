@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
-	service "github.com/facugarces29/ArquiSoftware/services/user"
+	service "proyecto/ArquiSoftware/services/user"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"

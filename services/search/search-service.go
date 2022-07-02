@@ -1,9 +1,9 @@
 package services
 
 import (
-	productCliente "github.com/facugarces29/ArquiSoftware/clients/product"
-	searchCliente "github.com/facugarces29/ArquiSoftware/clients/search"
-	dto "github.com/facugarces29/ArquiSoftware/dto/product"
+	productCliente "proyecto/ArquiSoftware/clients/product"
+	searchCliente "proyecto/ArquiSoftware/clients/search"
+	dto "proyecto/ArquiSoftware/dto/product"
 )
 
 type searchService struct{}
