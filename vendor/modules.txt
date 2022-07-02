@@ -1,3 +1,5 @@
+# github.com/alexedwards/scs v1.4.1
+## explicit
 # github.com/gin-contrib/cors v1.3.1
 ## explicit; go 1.13
 github.com/gin-contrib/cors
