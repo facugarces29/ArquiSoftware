@@ -1,3 +1,5 @@
+//some products for examples
+
 const products = [
     {
       id: 1,
