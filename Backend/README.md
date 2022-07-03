@@ -17,14 +17,13 @@
 
 # Restful:
 
-- /home                         GET     done
+- /                             GET     done
 - /search/:param                GET     done
-- /login                        POST    done
-- /cart                         GET     
-- /cart/buy                     PUT     
-- /buy                          PUT     
+- /login                        POST    done   
 - /products                     GET     done
 - /products/:id                 GET     done
 - /categories                   GET     done
 - /categories/:id               GET     done
-- /order                        GET 
+- /order                        GET     done
+- /order:userid                 GET     done
+- /order                        POST    done
