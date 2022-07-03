@@ -1,10 +1,10 @@
-FROM node:14
+FROM node:14.19-buster
 
 WORKDIR /api-frontend
 
 COPY package*.json ./
 
-RUN npm install && npm i accounting && npm install @material-ui/core && npm i @material-ui/icons
+RUN npm install 
 
 EXPOSE 3000
 
