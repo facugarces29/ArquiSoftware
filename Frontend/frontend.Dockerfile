@@ -1,6 +1,6 @@
 FROM node:14.19.3
 
-WORKDIR /usr/src/app/mi-app
+WORKDIR /api-frontend
 
 COPY package*.json ./
 
