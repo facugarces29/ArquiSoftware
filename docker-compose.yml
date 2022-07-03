@@ -40,8 +40,10 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    stdin_open: true
     volumes:
-      - ./Frontend:/frontend
+       - ./frontend-api:/usr/src/app/mi-app
+       - /usr/src/app/my-app/node_modules
 networks:
   default:
 volumes:
