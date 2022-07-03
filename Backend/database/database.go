@@ -19,8 +19,6 @@ import (
 
 	data "proyecto/ArquiSoftware/database/data"
 
-	"os"
-
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	log "github.com/sirupsen/logrus"
@@ -33,11 +31,11 @@ var (
 
 func init() {
 	// DB Connections Paramters
-	DBName := os.Getenv("PROY_DB_NAME") //variable de entorno para nombre de la base de datos
-	DBUser := os.Getenv("PROY_DB_USER") //variable de entorno para el usuario de la base de datos
+	DBName := "proyect"      //variable de entorno para nombre de la base de datos
+	DBUser := "proyect_user" //variable de entorno para el usuario de la base de datos
 	//DBPass := ""
-	DBPass := os.Getenv("PROY_DB_PASS") //variable de entorno para la pass de la base de datos
-	DBHost := "localhost"
+	DBPass := "secret" //variable de entorno para la pass de la base de datos
+	DBHost := "db"
 	// ------------------------
 
 	db, err = gorm.Open("mysql", DBUser+":"+DBPass+"@tcp("+DBHost+":3306)/"+DBName+"?charset=utf8&parseTime=True")
