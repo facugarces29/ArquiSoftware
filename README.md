@@ -1,6 +1,6 @@
 # Proyecto Arquitectura de software E-Commerce
 
-# REQUERIMIENTOS:
+# Requerimientos:
 
 - Autentificacion de usuarios: login, permiso.
 - Home app.
