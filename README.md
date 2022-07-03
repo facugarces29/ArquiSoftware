@@ -15,6 +15,11 @@
 - Paginacion (posibilidad de listar los productos por categoria).
 - Pagina de detalle de las compras realizadas con los productos de la misma.
 
+## Tecnologías utilizadas:
+- Golang: gin-gonic
+- Mysql
+- React: material-ui
+
 ## Commands:
 - docker compose build --no-cache
 - docker compose up
