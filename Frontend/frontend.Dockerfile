@@ -4,7 +4,7 @@ WORKDIR /usr/src/app/mi-app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm install && npm i accounting && npm install @material-ui/core && npm i @material-ui/icons
 
 EXPOSE 3000
 
