@@ -1,10 +1,11 @@
 FROM node:14.19.3
 
-ADD . /frontend
-WORKDIR /frontend
+WORKDIR /usr/src/app/mi-app
 
-COPY package.json ./
-COPY package-lock.json ./
-COPY ./ ./
-RUN npm i
-CMD ["npm", "run", "start"]
+COPY package*.json ./
+
+RUN npm install
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
