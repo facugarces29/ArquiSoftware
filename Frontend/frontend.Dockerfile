@@ -1,6 +1,4 @@
-FROM node:16
-
-EXPOSE 3000
+FROM node:14.19.3
 
 ADD . /frontend
 WORKDIR /frontend
