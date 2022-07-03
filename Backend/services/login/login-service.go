@@ -5,15 +5,16 @@ import (
 
 	userCliente "proyecto/ArquiSoftware/clients/user"
 	loginDto "proyecto/ArquiSoftware/dto/login"
-	userDto "proyecto/ArquiSoftware/dto/user"
+	"os"
 
+	"github.com/dgrijalva/jwt-go"
 	log "github.com/sirupsen/logrus"
 )
 
 type loginService struct{}
 
 type loginServiceInterface interface {
-	Login(loginDto.LoginDto) (userDto.UserDto, error)
+	Login(loginDto.LoginRequestDto) (loginDto.LoginResponseDto, error)
 }
 
 var (
@@ -24,7 +25,41 @@ func init() {
 	LoginService = &loginService{}
 }
 
-func (s *loginService) Login(login loginDto.LoginDto) (userDto.UserDto, error) {
+func (s *loginService) Login(loginReq loginDto.LoginRequestDto) (loginDto.LoginResponseDto, error) {
+
+	username := loginReq.Username
+	pass := loginReq.Password
+	log.Debug("pass", pass)
+	user, err := userCliente.GetUserByUsername(username)
+	var loginResp loginDto.LoginResponseDto
+
+	if err != nil{
+		log.Println(err)
+		return loginResp, err
+	}
+
+	if user.Pwd != pass {
+		err = errors.New("incorrect password")
+		log.Println(err)
+		return loginResp, err
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"username": loginReq.Username,
+		"password": loginReq.Password,
+	})
+
+	secretKey := os.Getenv("PROY_JWT_KEY")
+
+	var jwtKey = []byte(secretKey)
+
+	loginResp.Token, _ = token.SignedString(jwtKey)
+
+	return loginResp, nil
+}
+
+
+/*func (s *loginService) Login(login loginDto.LoginDto) (userDto.UserDto, error) {
 
 	username := login.Username
 	pass := login.Password
@@ -53,3 +88,4 @@ func (s *loginService) Login(login loginDto.LoginDto) (userDto.UserDto, error) {
 	return userDto, nil
 
 }
+*/
