@@ -32,7 +32,7 @@ func MapUrls() {
 	router.GET("/search/:param", searchController.GetProductsBySearchParam)
 
 	// Home Mapping
-	router.GET("/home", homeController.GetHomeProducts)
+	router.GET("/", homeController.GetHomeProducts)
 
 	// Order Mapping
 	router.GET("/order", orderController.GetOrders)
