@@ -30,20 +30,17 @@ services:
     depends_on:
       - db
     volumes:
-      - ./Backend:/backend-api/
+      - ./Backend:/api-backend/
   frontend:
     container_name: "proyect_frontend"
     build: 
       context: ./Frontend
       dockerfile: frontend.Dockerfile
-    ports:
-      - "3000:3000"
     depends_on:
       - db
     stdin_open: true
     volumes:
-       - ./frontend-api:/usr/src/app/mi-app
-       - /usr/src/app/my-app/node_modules
+       - ./Frontend:/api-frontend/
 networks:
   default:
 volumes:
