@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 const HomeProducts = () => {
   const classes = useStyles();
   
-  const url = "http://127.0.0.1:8080/home";
+  const url = "http://127.0.0.1:8080/";
   
   const [products, setProducts] = useState();
 

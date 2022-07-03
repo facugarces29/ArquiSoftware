@@ -31,6 +31,17 @@ services:
       - db
     volumes:
       - ./Backend:/api/
+  frontend:
+    container_name: "proyect_frontend"
+    build: 
+      context: ./Frontend
+      dockerfile: frontend.Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - ./Frontend:/frontend
 networks:
   default:
 volumes:
