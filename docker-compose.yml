@@ -30,7 +30,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./Backend:/api/
+      - ./Backend:/backend-api/
   frontend:
     container_name: "proyect_frontend"
     build: 
