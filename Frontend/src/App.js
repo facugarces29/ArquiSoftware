@@ -11,6 +11,8 @@ import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
 //import Products from "./components/Products";
 import CheckoutPage from "./pages/CheckoutPage";
 import Products from "./components/Products"
+import Login from "./pages/Login"
+import HomeProducts from "./components/HomeProducts";
 
 function App() {
   return (
@@ -18,8 +20,10 @@ function App() {
       <div className='app'>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Products/>}></Route>
-          <Route path='/checkout' element={<CheckoutPage/>}></Route>
+          {/*<Route path='/' element={<Products/>}></Route>*/}
+          <Route path="/" element={<HomeProducts/>}></Route>
+          <Route path='/checkout-page' element={<CheckoutPage/>}></Route>
+          <Route path="/login" element={<Login/>}></Route>
         </Routes>
       </div>
     </Router>

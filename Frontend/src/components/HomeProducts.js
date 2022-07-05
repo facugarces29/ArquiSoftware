@@ -42,18 +42,17 @@ const HomeProducts = () => {
 
               return  <Grid item xs={12} sm={6} md={4} lg={3}>
                         <Product
-                          productName={product.name}
-                          productPrice={product.price}
+                          name={product.name}
+                          price={product.price}
                           description={product.description}
-                          productImage={product.image}
-                          isInStock={stock}
-                          productCategory={product.category}
+                          image={product.image}
+                          stock={product.stock}
                         />
                       </Grid>
             })
 
           }
-        </Grid>
+          </Grid>
       </div>
     </>
   );
