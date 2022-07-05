@@ -3,9 +3,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import logo from '../assets/shop-icon.jpg';
 import { Badge, Button, CssBaseline } from '@material-ui/core';
 import { ShoppingCart } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,26 +37,31 @@ const Navbar = () => {
       <div className={classes.root}>
         <AppBar position='fixed' className={classes.appBar}>
           <Toolbar>
-            <IconButton>
-              <img
-                src={logo}
-                className={classes.image}
-                alt='logo'
-              />
-            </IconButton>
+            <Link to='/'>
+              <IconButton>
+                <Typography variant='h5' color='textPrimary'>
+                  E-Commerce
+                </Typography>
+              </IconButton>
+            </Link>
+            
             <div className={classes.grow} />
             <Typography variant='h6' color='textPrimary' component='p'>
               Hello guest
             </Typography>
             <div className={classes.button}>
+            
                 <Button variant='outlined'>
                   <strong>Login</strong>
                 </Button>
+                
+              <Link to='/checkout'>
                 <IconButton aria-label='show cart items' color='inherit'>
                   <Badge badgeContent={1} color='secondary'>
                     <ShoppingCart fontSize='large' color='primary' />
                   </Badge>
                 </IconButton>
+              </Link>
             </div>
           </Toolbar>
         </AppBar>

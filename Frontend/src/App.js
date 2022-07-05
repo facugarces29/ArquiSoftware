@@ -1,19 +1,28 @@
-import React from 'react';
-import './App.css';
-//import HomeProducts from './components/HomeProducts';
-//import Product from './components/Product';
-import Navbar from './components/Navbar';
-//import Products from './components/Products';
-import CheckoutPage from './pages/CheckoutPage';
+//import { useEffect } from "react";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
+//import SignIn from "./components/Signin";
+//import SignUp from "./components/Signup";
+//import { auth } from "./firebase";
+//import { useStateValue } from "./StateProvider";
+//import { actionTypes } from "./reducer";
+//import Checkout from "./components/ProcessOrder/Checkout";
+//import Products from "./components/Products";
+import CheckoutPage from "./pages/CheckoutPage";
+import Products from "./components/Products"
 
 function App() {
-
   return (
-    <div classNameName='app'>
-      <Navbar></Navbar>   
-      <CheckoutPage></CheckoutPage>
-    </div>
-    
+    <Router>
+      <div className='app'>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Products/>}></Route>
+          <Route path='/checkout' element={<CheckoutPage/>}></Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
