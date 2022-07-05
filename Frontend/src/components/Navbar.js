@@ -8,6 +8,7 @@ import { ShoppingCart } from "@material-ui/icons";
 import { useStateValue } from "../StateProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { actionTypes } from "../reducer";
+import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,11 +38,13 @@ const Navbar = () => {
   const [{ basket, user }, dispatch] = useStateValue();
   const history = useNavigate();
 
-
   //manejo de auth
   const handleAuth = () => {
     if (user) {
-      //deslogear
+      dispatch({
+        type: actionTypes.SET_USER,
+        user: null,
+      });
       dispatch({
         type: actionTypes.EMPTY_BASKET,
         basket: [],
@@ -66,7 +69,7 @@ const Navbar = () => {
 
             <div className={classes.grow} />
             <Typography variant='h6' color='textPrimary' component='p'>
-              Hello {user ? user.email : "Guest"}
+              Hello {user ? user.username : "Guest"}
             </Typography>
             <div className={classes.button}>
               

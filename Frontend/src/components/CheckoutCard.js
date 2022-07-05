@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CheckoutCard = ({ product: { id, name, image, price, category, description } }) => {
+const CheckoutCard = ({ product: { id, name, image, price, category, description , stock } }) => {
   const classes = useStyles();
   const [{ basket }, dispatch] = useStateValue();
 

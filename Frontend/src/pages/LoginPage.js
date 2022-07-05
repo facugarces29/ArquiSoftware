@@ -3,16 +3,15 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { Link as RouteLink, useNavigate } from "react-router-dom";
+import { actionTypes } from "../reducer";
+import { useStateValue } from "../StateProvider";
+import { useNavigate } from "react-router-dom"
 
 function Copyright() {
   return (
@@ -75,7 +74,8 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-  const history = useNavigate();
+  const navigate = useNavigate();
+  const [{ user }, dispatch] = useStateValue();
   const classes = useStyles();
 
   const signin = (e) => {
@@ -84,19 +84,22 @@ export default function Login() {
     login(username,password).then(data => {
       if (couldLogin === true){
         console.log("entro al if")
-        
-        history.push("/");
+        logUser();
+        navigate('/');
       } else{
-        setError(true)
+        setError(true);
       }
-    })
-    
-    
-    {/*auth
-      .signInWithEmailAndPassword(email, password)
-      .then((auth) => history.push("/"))
-  .catch((err) => alert(err.message));*/}
+    });
+  };
 
+  const logUser = () => {
+    dispatch({
+      type: actionTypes.SET_USER,
+      user: {
+        username,
+        password,
+      },
+    });
   };
 
   return (

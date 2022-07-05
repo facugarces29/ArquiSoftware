@@ -62,6 +62,7 @@ export default function Product({ id, name, category, image, price, description 
         image,
         price,
         description,
+        stock,
       },
     });
   };
@@ -104,7 +105,7 @@ export default function Product({ id, name, category, image, price, description 
       </CardActions>
       <Collapse in={expanded} timeout='auto' unmountOnExit>
         <CardContent>
-          <Typography paragraph>{description}</Typography>
+          <Typography paragraph>Descripción: {description}</Typography>
         </CardContent>
       </Collapse>
     </Card>
