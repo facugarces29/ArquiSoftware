@@ -41,7 +41,7 @@ services:
     depends_on:
       - db
     volumes:
-       - ./Frontend:/api-frontend/
+       - ./Frontend:/usr/src/api-frontend
 networks:
   default:
 volumes:

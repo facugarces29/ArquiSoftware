@@ -2,7 +2,7 @@ FROM node:14.19-buster
 
 WORKDIR /api-frontend
 
-COPY . ./api-frontend
+COPY . /api-frontend
 
 RUN npm install 
 
