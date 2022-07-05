@@ -2,10 +2,10 @@ FROM node:14.19-buster
 
 WORKDIR /api-frontend
 
-COPY package*.json ./
+COPY . ./api-frontend
 
 RUN npm install 
 
-EXPOSE 3000
+RUN npm build
 
-CMD ["npm", "start"]
+CMD ["npm", "start", "build"]
