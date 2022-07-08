@@ -8,7 +8,7 @@ import { ShoppingCart } from "@material-ui/icons";
 import { useStateValue } from "../StateProvider";
 import { Link, useNavigate } from "react-router-dom";
 import { actionTypes } from "../reducer";
-import { useEffect } from "react";
+import Menu from "./Menu"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
   image: {
     marginRight: "10px",
   },
+  link: {
+    textDecoration: "none",
+  },
 }));
 
 
@@ -36,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const classes = useStyles();
   const [{ basket, user }, dispatch] = useStateValue();
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   //manejo de auth
   const handleAuth = () => {
@@ -49,7 +52,7 @@ const Navbar = () => {
         type: actionTypes.EMPTY_BASKET,
         basket: [],
       });
-      history.push("/");
+      navigate('/');
     }
   };
 
@@ -59,7 +62,7 @@ const Navbar = () => {
       <div className={classes.root}>
         <AppBar position='fixed' className={classes.appBar}>
           <Toolbar>
-            <Link to='/'>
+            <Link to='/' className={classes.link}>
               <IconButton>
                 <Typography variant="h5" color="textPrimary">
                   E-Commerce
@@ -71,15 +74,15 @@ const Navbar = () => {
             <Typography variant='h6' color='textPrimary' component='p'>
               Hello {user ? user.username : "Guest"}
             </Typography>
+            {user? <Menu></Menu> : ""}
             <div className={classes.button}>
-              
-              <Link to={!user && "/login"}>
+              {user? "" : <Link to={!user && "/login"} className={classes.link}>
                 <Button onClick={handleAuth} variant='outlined'>
-                  <strong>{user ? "LogOut" : "LogIn"}</strong>
+                  <strong>LogIn</strong>
                 </Button>
-              </Link>
+              </Link>}
 
-              <Link to='/checkout-page'>
+              <Link to='/checkout-page' className={classes.link}>
                 <IconButton aria-label='show cart items' color='inherit'>
                   <Badge badgeContent={basket?.length} color='secondary'>
                     <ShoppingCart fontSize='large' color='primary' />
