@@ -10,30 +10,22 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    width: '100vh',
-  },
-  media: {
-    height: 140,
+    maxWidth: 345,
   },
 });
 
-export default function OrderCard({ image , amount , date }) {
+export default function OrderCard({ image, amount, date }) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={image}
-          title="Contemplative Reptile"
-        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {date}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            amount: {amount}
+            - Amount: {amount}
           </Typography>
         </CardContent>
       </CardActionArea>

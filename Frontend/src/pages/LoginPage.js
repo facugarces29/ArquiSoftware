@@ -62,10 +62,10 @@ async function login(username, password) {
         if (response.status === 400 || response.status === 401)
         {
           couldLogin = false;
-          return;
+          return response.json();
         }
         couldLogin = true;
-        return;
+        return response.json();
       })
    }
 
@@ -73,17 +73,22 @@ async function login(username, password) {
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  let userID = 0;
+
   const [error, setError] = useState(false);
   const navigate = useNavigate();
   const [{ user }, dispatch] = useStateValue();
   const classes = useStyles();
 
   const signin = (e) => {
-    console.log("entro a signin")
+    console.log("entro a signin");
     e.preventDefault();
     login(username,password).then(data => {
       if (couldLogin === true){
-        console.log("entro al if")
+        console.log("entro al if" , data.id);
+        console.log("userid",userID);
+        userID = data.id;
+        console.log("userid",userID);
         logUser();
         navigate('/');
       } else{
@@ -98,6 +103,7 @@ export default function Login() {
       user: {
         username,
         password,
+        userID,
       },
     });
   };
