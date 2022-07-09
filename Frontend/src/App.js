@@ -5,6 +5,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import LoginPage from "./pages/LoginPage"
 import HomePage from "./pages/HomePage";
 import StickyFooter from "./components/StickyFooter";
+import OrdersPage from "./pages/OrdersPage"
 
 function App() {
   return (
@@ -15,9 +16,11 @@ function App() {
           <Route path="/" element={<HomePage/>}></Route>
           <Route path='/checkout-page' element={<CheckoutPage/>}></Route>
           <Route path="/login" element={<LoginPage/>}></Route>
+          <Route path="/orders" element={<OrdersPage/>}></Route>
         </Routes>
+        
       </div>
-      <StickyFooter/>
+      <StickyFooter></StickyFooter>
     </Router>
   );
 }
