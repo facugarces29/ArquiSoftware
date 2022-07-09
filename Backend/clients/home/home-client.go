@@ -12,7 +12,7 @@ var Db *gorm.DB
 func GetHomeProducts() (model.Products, error) {
 	var products model.Products
 
-	err := Db.Order("rand()").Limit(10).Find(&products).Error
+	err := Db.Order("rand()").Limit(20).Find(&products).Error
 
 	log.Debug("Products: ", products)
 

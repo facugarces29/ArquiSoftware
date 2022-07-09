@@ -9,6 +9,7 @@ type userService struct{}
 
 type userServiceInterface interface {
 	GetUserById(id int) (dto.UserDto, error)
+	GetUserByUsername(string) (dto.UserDto, error)
 	GetUsers() (dto.UsersDto, error)
 }
 
@@ -76,6 +77,5 @@ func (s *userService) GetUserByUsername(username string) (dto.UserDto, error) {
 	userDto.UserName = user.UserName
 	userDto.Id = user.UserID
 	userDto.Email = user.Email
-	userDto.Password = user.Pwd
 	return userDto, nil
 }

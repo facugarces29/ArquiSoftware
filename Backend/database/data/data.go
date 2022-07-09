@@ -5,6 +5,7 @@ import (
 	log "github.com/sirupsen/logrus"
 
 	addressModel "proyecto/ArquiSoftware/model/address"
+	orderModel "proyecto/ArquiSoftware/model/order"
 	productModel "proyecto/ArquiSoftware/model/product"
 	userModel "proyecto/ArquiSoftware/model/user"
 )
@@ -215,6 +216,19 @@ func InsertData(db *gorm.DB) {
 		db.Create(&addressModel.Address{UserID: 3, State: "Cordoba", City: "Cordoba", Zip: 5000, Addressline: "General Paz 344"})
 		db.Create(&addressModel.Address{UserID: 4, State: "Cordoba", City: "Cordoba", Zip: 5000, Addressline: "Velez Sarsfield 1500"})
 		db.Create(&addressModel.Address{UserID: 5, State: "Cordoba", City: "Cordoba", Zip: 5000, Addressline: "Belgrano 110"})
+	}
+
+	//Inserting orders
+
+	err = db.First(&orderModel.Order{}).Error
+
+	if err != nil {
+		db.Create(&orderModel.Order{UserID: 1})
+		db.Create(&orderModel.OrderDetail{OrderID: 1, ProductID: 10, Price: 1000, Quantity: 1})
+		db.Create(&orderModel.Order{UserID: 1})
+		db.Create(&orderModel.OrderDetail{OrderID: 2, ProductID: 22, Price: 5000, Quantity: 1})
+		db.Create(&orderModel.Order{UserID: 2})
+		db.Create(&orderModel.OrderDetail{OrderID: 3, ProductID: 2, Price: 500, Quantity: 1})
 	}
 
 	//manage errors...

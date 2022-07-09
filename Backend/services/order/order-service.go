@@ -55,6 +55,7 @@ func (s *orderService) GetOrders() (dto.OrdersDto, error) {
 		var amount float64
 		orderDto.Id = order.ID
 		orderDto.UserId = order.UserID
+		orderDto.Date = order.CreatedAt.Format("2006-January-02")
 
 		orderDetails, _ := orderCliente.GetOrderDetailsByOrderId(int(orderDto.Id))
 		var orderDetailsDto dto.OrderDetailsDto
@@ -93,6 +94,8 @@ func (s *orderService) GetOrdersByUserId(idUser int) (dto.OrdersDto, error) {
 		var orderDto dto.OrderDto
 		orderDto.Id = order.ID
 		orderDto.UserId = order.UserID
+		var amount float64
+		orderDto.Date = order.CreatedAt.Format("2006-January-02")
 
 		orderDetails, _ := orderCliente.GetOrderDetailsByOrderId(int(orderDto.Id))
 		var orderDetailsDto dto.OrderDetailsDto
@@ -105,9 +108,12 @@ func (s *orderService) GetOrdersByUserId(idUser int) (dto.OrdersDto, error) {
 			orderDetailDto.ProductId = orderDetail.ProductID
 			orderDetailDto.Quantity = orderDetail.Quantity
 			orderDetailsDto = append(orderDetailsDto, orderDetailDto)
+
+			amount = amount + (orderDetailDto.Price * float64(orderDetailDto.Quantity))
 		}
 
 		orderDto.OrderDetails = orderDetailsDto
+		orderDto.Amount = amount
 
 		ordersDto = append(ordersDto, orderDto)
 	}
