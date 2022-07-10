@@ -19,7 +19,7 @@ func InsertData(db *gorm.DB) {
 
 	if err != nil {
 		db.Create(&userModel.User{Name: "lautaro", LastName: "Saenz", UserName: "lautarose", Email: "abcdefg@gmail.com", Pwd: "hola123"})
-		db.Create(&userModel.User{Name: "Joaco", LastName: "Reyero", UserName: "jaocoreyero", Email: "12345@gmail.com", Pwd: "hola123"})
+		db.Create(&userModel.User{Name: "Joaco", LastName: "Reyero", UserName: "joacoreyero", Email: "12345@gmail.com", Pwd: "hola123"})
 		db.Create(&userModel.User{Name: "Facundo", LastName: "Garces", UserName: "Facuelcapo", Email: "asasas@gmail.com", Pwd: "hola123"})
 		db.Create(&userModel.User{Name: "Hernan", LastName: "Lachampionliga", UserName: "hernanchampion", Email: "hernan@gmail.com", Pwd: "hola123"})
 		db.Create(&userModel.User{Name: "Saul", LastName: "Hudson", UserName: "slash", Email: "slashGNR@gmail.com", Pwd: "hola123"})
@@ -230,7 +230,7 @@ func InsertData(db *gorm.DB) {
 		db.Create(&orderModel.OrderDetail{OrderID: 2, ProductID: 33, Price: 800, Quantity: 1})
 		db.Create(&orderModel.OrderDetail{OrderID: 2, ProductID: 50, Price: 800, Quantity: 1})
 		db.Create(&orderModel.Order{UserID: 2})
-		db.Create(&orderModel.OrderDetail{OrderID: 3, ProductID: 2, Price: 500, Quantity: 1})
+		db.Create(&orderModel.OrderDetail{OrderID: 3, ProductID: 2, Price: 500, Quantity: 2})
 	}
 
 	//manage errors...
