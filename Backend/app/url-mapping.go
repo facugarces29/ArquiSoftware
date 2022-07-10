@@ -2,6 +2,7 @@ package app
 
 import (
 	//ver
+	addressController "proyecto/ArquiSoftware/controllers/address"
 	homeController "proyecto/ArquiSoftware/controllers/home"
 	loginController "proyecto/ArquiSoftware/controllers/login"
 	orderController "proyecto/ArquiSoftware/controllers/order"
@@ -43,4 +44,7 @@ func MapUrls() {
 	router.POST("/order/detail", orderController.InsertOrderDetail)
 	router.GET("/order/detail", orderController.GetOrderDetails)
 	router.GET("/order/detail/:orderId", orderController.GetOrderDetailsByOrderId)
+
+	// Address Mapping
+	router.GET("/address/:id", addressController.GetAddressByUserId)
 }

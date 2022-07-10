@@ -227,6 +227,8 @@ func InsertData(db *gorm.DB) {
 		db.Create(&orderModel.OrderDetail{OrderID: 1, ProductID: 10, Price: 1000, Quantity: 1})
 		db.Create(&orderModel.Order{UserID: 1})
 		db.Create(&orderModel.OrderDetail{OrderID: 2, ProductID: 22, Price: 5000, Quantity: 1})
+		db.Create(&orderModel.OrderDetail{OrderID: 2, ProductID: 33, Price: 800, Quantity: 1})
+		db.Create(&orderModel.OrderDetail{OrderID: 2, ProductID: 50, Price: 800, Quantity: 1})
 		db.Create(&orderModel.Order{UserID: 2})
 		db.Create(&orderModel.OrderDetail{OrderID: 3, ProductID: 2, Price: 500, Quantity: 1})
 	}

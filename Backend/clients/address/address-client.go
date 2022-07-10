@@ -1,7 +1,7 @@
 package clients
 
 import (
-	model "proyecto/ArquiSoftware/model/address"
+	addressModel "proyecto/ArquiSoftware/model/address"
 
 	"github.com/jinzhu/gorm"
 	log "github.com/sirupsen/logrus"
@@ -9,10 +9,10 @@ import (
 
 var Db *gorm.DB
 
-func GetAddressById(id int) (model.Address, error) {
-	var address model.Address
+func GetAddressById(id int) (addressModel.Address, error) {
+	var address addressModel.Address
 
-	err := Db.Where("id = ?", id).First(&address).Error
+	err := Db.Where("user_id = ?", id).First(&address).Error
 
 	if err != nil {
 		log.Println(err)
@@ -24,8 +24,8 @@ func GetAddressById(id int) (model.Address, error) {
 	return address, nil
 }
 
-func GetAddresses() (model.Addresses, error) {
-	var addresses model.Addresses
+func GetAddresses() (addressModel.Addresses, error) {
+	var addresses addressModel.Addresses
 
 	err := Db.Find(&addresses).Error
 
