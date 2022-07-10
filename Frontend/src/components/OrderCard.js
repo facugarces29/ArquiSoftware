@@ -14,25 +14,43 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OrderCard({ image, amount, date }) {
+export default function OrderCard({ image, amount, date , products , address }) {
   const classes = useStyles();
+
+  const renderProducts = (productName, productPrice, productQuantity) => {
+    return () => {
+      <Typography variant="body2" color="textSecondary" component="p">
+      -{productName}: price: ${productPrice}, quantity: {productQuantity}
+      </Typography>
+    }
+  }
 
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
             component="img"
-            alt="Contemplative Reptile"
+            alt={products[0].name}
             height="140"
             image={image}
-            title="Contemplative Reptile"
+            title="product image"
           />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {date}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            - Amount: {amount}
+            <strong>Products:</strong><br></br>
+            {products.map((product) => (
+              <div>
+                <Typography  variant="body2" color="textSecondary" component="p">
+                  - {product.name} <br></br> price: ${product.price} <br></br> quantity: {product.quantity} <br></br>
+                </Typography>
+              </div>
+          ))}
+          <strong>- Total amount: </strong>{amount}<br></br>
+          <strong>- Address:</strong>
+          
           </Typography>
         </CardContent>
       </CardActionArea>
