@@ -66,6 +66,7 @@ const Orders = () => {
                       <OrderCard
                         date={order.date}
                         amount={order.amount}
+                        image={order.image}
                       ></OrderCard>
                       </Grid>
             })

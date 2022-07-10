@@ -20,6 +20,13 @@ export default function OrderCard({ image, amount, date }) {
   return (
     <Card className={classes.root}>
       <CardActionArea>
+        <CardMedia
+            component="img"
+            alt="Contemplative Reptile"
+            height="140"
+            image={image}
+            title="Contemplative Reptile"
+          />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {date}

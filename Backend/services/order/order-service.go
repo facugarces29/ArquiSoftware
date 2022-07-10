@@ -1,7 +1,9 @@
 package services
 
 import (
+	"log"
 	orderCliente "proyecto/ArquiSoftware/clients/order"
+	productCliente "proyecto/ArquiSoftware/clients/product"
 	dto "proyecto/ArquiSoftware/dto/order"
 	model "proyecto/ArquiSoftware/model/order"
 )
@@ -10,7 +12,7 @@ type orderService struct{}
 
 type orderServiceInterface interface {
 	InsertOrder(dto.InsertOrderDto) (dto.OrderDto, error)
-	GetOrdersByUserId(int) (dto.OrdersDto, error)
+	GetOrdersByUserId(int) (dto.OrdersByIdResponseDto, error)
 	GetOrders() (dto.OrdersDto, error)
 }
 
@@ -81,42 +83,52 @@ func (s *orderService) GetOrders() (dto.OrdersDto, error) {
 	return ordersDto, nil
 }
 
-func (s *orderService) GetOrdersByUserId(idUser int) (dto.OrdersDto, error) {
+func (s *orderService) GetOrdersByUserId(idUser int) (dto.OrdersByIdResponseDto, error) {
 	orders, err := orderCliente.GetOrdersByUserId(idUser)
 
-	var ordersDto dto.OrdersDto
+	var ordersResponseDto dto.OrdersByIdResponseDto
 
 	if err != nil {
-		return ordersDto, err
+		return ordersResponseDto, err
 	}
 
 	for _, order := range orders {
-		var orderDto dto.OrderDto
-		orderDto.Id = order.ID
-		orderDto.UserId = order.UserID
+		var orderResponseDto dto.OrderByIdResponseDto
+		orderResponseDto.Id = order.ID
+		orderResponseDto.UserId = order.UserID
 		var amount float64
-		orderDto.Date = order.CreatedAt.Format("2006-January-02")
+		orderResponseDto.Date = order.CreatedAt.Format("2006-January-02")
 
-		orderDetails, _ := orderCliente.GetOrderDetailsByOrderId(int(orderDto.Id))
-		var orderDetailsDto dto.OrderDetailsDto
+		orderDetails, _ := orderCliente.GetOrderDetailsByOrderId(int(orderResponseDto.Id))
+		var orderProductsDto dto.OrderProductsDto
 
 		for _, orderDetail := range orderDetails {
-			var orderDetailDto dto.OrderDetailDto
-			orderDetailDto.Id = orderDetail.OrderDetailID
-			orderDetailDto.OrderId = orderDetail.OrderID
-			orderDetailDto.Price = orderDetail.Price
-			orderDetailDto.ProductId = orderDetail.ProductID
-			orderDetailDto.Quantity = orderDetail.Quantity
-			orderDetailsDto = append(orderDetailsDto, orderDetailDto)
+			var orderProductDto dto.OrderProductDto
 
-			amount = amount + (orderDetailDto.Price * float64(orderDetailDto.Quantity))
+			orderProduct, err := productCliente.GetProductById(int(orderDetail.ProductID))
+
+			if err != nil {
+				log.Println(err)
+				return ordersResponseDto, err
+			}
+
+			orderProductDto.Id = orderDetail.ProductID
+			orderProductDto.Name = orderProduct.Name
+			orderProductDto.Price = orderDetail.Price
+			orderProductDto.Quantity = orderDetail.Quantity
+			orderProductDto.Image = orderProduct.Image
+
+			orderProductsDto = append(orderProductsDto, orderProductDto)
+
+			amount = amount + (orderProductDto.Price * float64(orderProductDto.Quantity))
 		}
 
-		orderDto.OrderDetails = orderDetailsDto
-		orderDto.Amount = amount
+		orderResponseDto.OrderProducts = orderProductsDto
+		orderResponseDto.Amount = amount
+		orderResponseDto.Image = orderProductsDto[0].Image
 
-		ordersDto = append(ordersDto, orderDto)
+		ordersResponseDto = append(ordersResponseDto, orderResponseDto)
 	}
 
-	return ordersDto, nil
+	return ordersResponseDto, nil
 }
