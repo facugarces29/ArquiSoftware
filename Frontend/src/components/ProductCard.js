@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Product({ id, name, category, image, price, description , stock }) {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -89,9 +89,9 @@ export default function Product({ id, name, category, image, price, description 
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label='Add to Cart' onClick={addToBasket}>
+        {!user? "" : <IconButton aria-label='Add to Cart' onClick={addToBasket}>
           <AddShoppingCart fontSize='large' />
-        </IconButton>
+        </IconButton>}
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -99,6 +99,7 @@ export default function Product({ id, name, category, image, price, description 
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label='show more'
+          fontSize='large'
         >
           <ExpandMoreIcon />
         </IconButton>

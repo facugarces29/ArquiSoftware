@@ -48,8 +48,8 @@ export default function OrderCard({ image, amount, date , products , address }) 
                 </Typography>
               </div>
           ))}
-          <strong>- Total amount: </strong>{amount}<br></br>
-          <strong>- Address:</strong>
+          <strong>- Total amount: </strong>${amount}<br></br>
+          <strong>- Address: </strong> {address.address_line}, {address.zip}, {address.city}, {address.state} 
           
           </Typography>
         </CardContent>
