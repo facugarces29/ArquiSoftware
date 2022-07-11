@@ -53,18 +53,40 @@ export default function Product({ id, name, category, image, price, description 
   }
 
   const addToBasket = () => {
-    dispatch({
-      type: actionTypes.ADD_TO_BASKET,
-      item: {
-        id,
-        name,
-        category,
-        image,
-        price,
-        description,
-        stock,
-      },
+    let exists = false;
+    let stockAlcanzado = false;
+    basket.map((item)=>{
+      if (item.id === id && item.quantity < stock){
+        exists = true;
+        dispatch({
+          type: actionTypes.INCREMENT_ITEM,
+          id: id,
+        });
+      } else if (item.id === id && item.quantity >= stock){
+        stockAlcanzado = true;
+        return
+      }
     });
+    if(stockAlcanzado){
+      return
+    }
+    if(!exists){
+      if(isInStock){
+        dispatch({
+          type: actionTypes.ADD_TO_BASKET,
+          item: {
+            id,
+            name,
+            category,
+            image,
+            price,
+            description,
+            stock,
+            quantity: 1,
+            },
+        }); 
+      }
+    }
   };
 
   return (

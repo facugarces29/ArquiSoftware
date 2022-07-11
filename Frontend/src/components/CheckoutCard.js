@@ -5,10 +5,12 @@ import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { AddShoppingCart } from "@material-ui/icons";
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import AddIcon from '@material-ui/icons/Add';
 import { useStateValue } from "../StateProvider";
 import accounting from "accounting";
 import { actionTypes } from "../reducer";
+import RemoveIcon from '@material-ui/icons/Remove';
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -32,10 +34,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CheckoutCard = ({ product: { id, name, image, price, category, description , stock } }) => {
+const CheckoutCard = ({ product: { id, name, image, price, category, description , stock , quantity } }) => {
   const classes = useStyles();
   const [{ basket }, dispatch] = useStateValue();
-
+  
   const removeItem = () => {
     dispatch({
       type: actionTypes.REMOVE_ITEM,
@@ -43,19 +45,26 @@ const CheckoutCard = ({ product: { id, name, image, price, category, description
     });
   };
 
-  const addToBasket = () => {
-    dispatch({
-      type: actionTypes.ADD_TO_BASKET,
-      item: {
-        id,
-        name,
-        category,
-        image,
-        price,
-        description,
-      },
+
+  const addOne = () => {
+    basket.map((item)=>{
+      if (item.id === id && item.quantity < stock){
+        dispatch({
+          type: actionTypes.INCREMENT_ITEM,
+          id: id,
+        });
+      } else if (item.id === id && item.quantity >= stock){
+        return
+      }
     });
-  };
+  }
+
+  const removeOne = () => {
+    dispatch({
+      type: actionTypes.DECREMENT_ITEM,
+      id: id,
+    });
+  }
 
   return (
     <Card className={classes.root}>
@@ -74,9 +83,16 @@ const CheckoutCard = ({ product: { id, name, image, price, category, description
       />
       <CardMedia className={classes.media} image={image} title={name} />
       <CardActions disableSpacing className={classes.cardActions}>
-        <IconButton aria-label='Add to Cart' onClick={addToBasket}>
-          <AddShoppingCart fontSize='large' />
-        </IconButton>
+        <ButtonGroup disableElevation variant="contained"  style={{ color: 'black' }}>
+          <IconButton onClick={addOne}>
+            <AddIcon style={{ color: 'black' }}></AddIcon>
+          </IconButton>
+          <IconButton onClick={removeOne}>
+            <RemoveIcon style={{ color: 'red' }}></RemoveIcon>
+          </IconButton>
+        </ButtonGroup>
+        Unidades:
+        <Typography variant="h6">{quantity} / {stock}</Typography>
         <IconButton onClick={removeItem}>
           <DeleteIcon fontSize='large' />
         </IconButton>

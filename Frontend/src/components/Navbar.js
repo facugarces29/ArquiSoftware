@@ -10,7 +10,7 @@ import { ShoppingCart } from "@material-ui/icons";
 import { useStateValue } from "../StateProvider";
 import { Link, useNavigate } from "react-router-dom";
 import SearchIcon from '@material-ui/icons/Search';
-import { actionTypes } from "../reducer";
+import { actionTypes , getItemsQuantity } from "../reducer";
 import Menu from "./Menu"
 
 const useStyles = makeStyles((theme) => ({
@@ -151,7 +151,7 @@ const Navbar = () => {
                 </Link>}
                 {!user? "" : <Link to='/checkout-page' className={classes.link}>
                   <IconButton aria-label='show cart items' color='inherit'>
-                    <Badge badgeContent={basket?.length} color='secondary'>
+                    <Badge badgeContent={getItemsQuantity(basket)} color='secondary'>
                       <ShoppingCart fontSize='large' color='primary' />
                     </Badge>
                   </IconButton>
