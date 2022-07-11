@@ -146,7 +146,7 @@ export default function Login() {
           />
           <div className={classes.error}>
             <Typography variant="h5">
-              {error? "Usuario o contraseña inválidos." : "" }
+              {error? "Usuario y/o contraseña inválidos." : "" }
             </Typography>
           </div>
           <Button
