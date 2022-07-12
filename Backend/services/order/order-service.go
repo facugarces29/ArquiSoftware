@@ -39,6 +39,7 @@ func (s *orderService) InsertOrder(insertOrderDto dto.InsertOrderDto) (dto.Order
 
 	orderDto.Id = order.ID
 	orderDto.UserId = order.UserID
+	orderDto.Date = order.CreatedAt.Format("2006-January-02")
 
 	return orderDto, nil
 }

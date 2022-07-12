@@ -11,7 +11,7 @@ import (
 type orderDetailService struct{}
 
 type orderDetailServiceInterface interface {
-	InsertOrderDetail(dto.OrderDetailDto) (dto.OrderDetailDto, error)
+	InsertOrderDetail(dto.InsertDetailDto) (dto.OrderDetailDto, error)
 	GetOrderDetailsByOrderId(int) (dto.OrderDetailsDto, error)
 	GetOrderDetails() (dto.OrderDetailsDto, error)
 }
@@ -24,7 +24,7 @@ func init() {
 	OrderDetailService = &orderDetailService{}
 }
 
-func (s *orderDetailService) InsertOrderDetail(orderDetailDto dto.OrderDetailDto) (dto.OrderDetailDto, error) {
+func (s *orderDetailService) InsertOrderDetail(orderDetailDto dto.InsertDetailDto) (dto.OrderDetailDto, error) {
 	var orderDetail model.OrderDetail
 	var orderDetailResponseDto dto.OrderDetailDto
 
@@ -37,7 +37,7 @@ func (s *orderDetailService) InsertOrderDetail(orderDetailDto dto.OrderDetailDto
 
 	if err != nil {
 		log.Println(err)
-		return orderDetailDto, err
+		return orderDetailResponseDto, err
 	}
 
 	orderDetailResponseDto.Id = orderDetail.OrderDetailID

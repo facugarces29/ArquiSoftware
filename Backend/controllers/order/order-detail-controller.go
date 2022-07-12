@@ -12,7 +12,7 @@ import (
 )
 
 func InsertOrderDetail(c *gin.Context) {
-	var orderDetailDto dto.OrderDetailDto
+	var orderDetailDto dto.InsertDetailDto
 	var orderDetailResponseDto dto.OrderDetailDto
 
 	err := c.BindJSON(&orderDetailDto)

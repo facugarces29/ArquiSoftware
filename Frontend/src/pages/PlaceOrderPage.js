@@ -49,21 +49,83 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let couldCreateOrder = false;
+async function postOrder( userID ){
+  return await fetch('http://localhost:8080/order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({"user_id":userID})
+    })
+    .then(response => {
+      if (response.status === 400 || response.status === 401)
+      {
+        couldCreateOrder = false;
+        return response.json();
+      }
+      couldCreateOrder = true;
+      return response.json();
+    })
+}
 
-
+let couldCreateDetail = false;
+async function postDetail( orderID , product ){
+  return await fetch('http://localhost:8080/order/detail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({"order_id":orderID, "product_id":product.id, "price":product.price, "quantity":product.quantity})
+    })
+    .then(response => {
+      if (response.status === 400 || response.status === 401)
+      {
+        couldCreateDetail = false;
+        return response.json();
+      }
+      couldCreateDetail = true;
+      return response.json();
+    })
+}
 
 export default function Checkout() {
   const classes = useStyles();
   const [placed, setPlaced] = useState(false);
-  const [{ user }, dispatch] = useStateValue();
+  const [error, setError] = useState(false);
+  const [{ user, basket }, dispatch] = useStateValue();
+
+  let orderID = 0;
 
 
-  const placeOrder = () => {
-    setPlaced(true);
-    dispatch({
-      type: actionTypes.EMPTY_BASKET,
-      basket: [],
-    });
+  const placeOrder = (e) => {
+    e.preventDefault();
+    postOrder(user.userID).then(data => {
+      if(couldCreateOrder === true){
+        orderID = data.id;
+        console.log("fuera",orderID);
+        basket.map((item) => {
+          console.log("item",item);
+          console.log("dentro",orderID);
+          postDetail(orderID , item).then(detailData => {
+            if (couldCreateDetail === false){
+              setError(true);
+              return;
+            }
+          })
+          return;
+        })
+      }
+    })
+    if(error == true){
+      return;
+    }else{
+      setPlaced(true);
+      dispatch({
+        type: actionTypes.EMPTY_BASKET,
+        basket: [],
+      });
+    }
   }
 
   return (
