@@ -22,19 +22,27 @@ const Total = () => {
   const classes = useStyles();
   const [{ basket }, dispatch] = useStateValue();
 
+  let isBasket = false;
+
+  if (getItemsQuantity(basket) > 0) {
+    isBasket = true;
+  }
+
   return (
     <div className={classes.root}>
       <h5>Total items : {getItemsQuantity(basket)}</h5>
       <h5>{accounting.formatMoney(getBasketTotal(basket), "$")}</h5>
+
+      {isBasket? 
       <Button
         component={Link}
-        to='/checkout'
+        to='/place-order'
         className={classes.button}
         variant='contained'
         color='secondary'
       >
         Check out
-      </Button>
+      </Button> : console.log("no hay items")}
     </div>
   );
 };

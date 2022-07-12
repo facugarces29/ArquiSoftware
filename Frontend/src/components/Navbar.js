@@ -149,7 +149,7 @@ const Navbar = () => {
                     <strong>LogIn</strong>
                   </Button>
                 </Link>}
-                {!user? "" : <Link to='/checkout-page' className={classes.link}>
+                {!user? "" : <Link to='/checkout' className={classes.link}>
                   <IconButton aria-label='show cart items' color='inherit'>
                     <Badge badgeContent={getItemsQuantity(basket)} color='secondary'>
                       <ShoppingCart fontSize='large' color='primary' />
