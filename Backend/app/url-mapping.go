@@ -39,6 +39,7 @@ func MapUrls() {
 	router.GET("/order", orderController.GetOrders)
 	router.GET("/order/:userId", orderController.GetOrdersByUserId)
 	router.POST("/order", orderController.InsertOrder)
+	router.DELETE("/order/:orderId", orderController.DeleteOrder)
 
 	// Order Detail Mapping
 	router.POST("/order/detail", orderController.InsertOrderDetail)

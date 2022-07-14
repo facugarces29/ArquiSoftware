@@ -59,3 +59,17 @@ func InsertOrder(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, orderDto)
 }
+
+func DeleteOrder(c *gin.Context) {
+
+	id, _ := strconv.Atoi(c.Param("orderId"))
+
+	err := service.OrderService.DeleteOrder(id)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest,"cant delete order")
+		return
+	}
+
+	c.JSON(http.StatusOK,"order delete")
+}

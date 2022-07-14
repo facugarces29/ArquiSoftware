@@ -83,3 +83,14 @@ func GetOrdersByUserId(idUser int) (orderModel.Orders, error) {
 	return orders, nil
 
 }
+
+func DeleteOrderById(id int) error {
+	var order orderModel.Order
+	err := Db.Where("id = ?", id).Delete(&order).Error
+
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+	return nil
+}
