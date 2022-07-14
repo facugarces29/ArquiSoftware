@@ -15,6 +15,13 @@ func InsertOrderDetail(orderDetail model.OrderDetail) (model.OrderDetail, error)
 		log.Println(err)
 		return orderDetail, err
 	}
+	var productId int
+
+	err2 := Db.Where("product_id = ?", orderDetail.ProductID).First(productId).Error
+	if err2 != nil {
+		log.Println(err2)
+		return orderDetail, err2
+	}
 
 	return orderDetail, nil
 }

@@ -4,6 +4,7 @@ import (
 	"log"
 
 	orderDetailCliente "proyecto/ArquiSoftware/clients/order"
+	client "proyecto/ArquiSoftware/clients/product"
 	dto "proyecto/ArquiSoftware/dto/order"
 	model "proyecto/ArquiSoftware/model/order"
 )
@@ -25,6 +26,8 @@ func init() {
 }
 
 func (s *orderDetailService) InsertOrderDetail(orderDetailDto dto.InsertDetailDto) (dto.OrderDetailDto, error) {
+
+	client.DecreaseProductById(int(orderDetailDto.ProductId), orderDetailDto.Quantity)
 	var orderDetail model.OrderDetail
 	var orderDetailResponseDto dto.OrderDetailDto
 

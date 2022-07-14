@@ -11,7 +11,7 @@ type addressService struct {
 }
 
 type addressServiceInterface interface {
-	GetAddressByUserId(id int) (dto.AddressesDto, error)
+	GetAddressByUserId(id int) (dto.AddressDto, error)
 	GetAddressById(id int) (dto.AddressDto, error)
 }
 
@@ -29,28 +29,24 @@ func initAddressService(addressClient addressCliente.AddressClientInterface) add
 	return service
 }
 
-func (s *addressService) GetAddressByUserId(id int) (dto.AddressesDto, error) {
+func (s *addressService) GetAddressByUserId(id int) (dto.AddressDto, error) {
 
-	addresses, err := addressCliente.GetAddressByUserId(id)
-	var addressesDto dto.AddressesDto
+	var address model.Address
+	var addressDto dto.AddressDto
+	address, err := addressCliente.GetAddressByUserId(id)
 
-	if err != nil {
-		return addressesDto, err
+	if address.AddressID == 0 {
+		return addressDto, err
 	}
 
-	for _, address := range addresses {
-		var adressDto dto.AddressDto
-		adressDto.Id = address.AddressID
-		adressDto.UserId = address.UserID
-		adressDto.AddressLine = address.Addressline
-		adressDto.State = address.State
-		adressDto.City = address.City
-		adressDto.Zip = address.Zip
+	addressDto.Id = address.AddressID
+	addressDto.UserId = address.UserID
+	addressDto.AddressLine = address.Addressline
+	addressDto.State = address.State
+	addressDto.City = address.City
+	addressDto.Zip = address.Zip
 
-		addressesDto = append(addressesDto, adressDto)
-	}
-
-	return addressesDto, nil
+	return addressDto, nil
 }
 
 func (s *addressService) GetAddressById(id int) (dto.AddressDto, error) {

@@ -10,23 +10,23 @@ import (
 var Db *gorm.DB
 
 type AddressClientInterface interface {
-	GetAddressByUserId(id int) addressModel.Addresses
+	GetAddressByUserId(id int) addressModel.Address
 	GetAddressById(id int) addressModel.Address
 }
 
-func GetAddressByUserId(id int) (addressModel.Addresses, error) {
-	var addresses addressModel.Addresses
+func GetAddressByUserId(id int) (addressModel.Address, error) {
+	var address addressModel.Address
 
-	err := Db.Where("user_id = ?", id).Find(addresses).Error
+	err := Db.Where("user_id = ?", id).First(&address).Error
 
 	if err != nil {
 		log.Println(err)
-		return addresses, err
+		return address, err
 	}
 
-	log.Debug("Address: ", addresses)
+	log.Debug("Address: ", address)
 
-	return addresses, nil
+	return address, nil
 }
 
 func GetAddressById(id int) (addressModel.Address, error) {
