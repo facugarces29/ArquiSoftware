@@ -37,3 +37,14 @@ func GetProducts() (model.Products, error) {
 
 	return products, err
 }
+
+func DecreaseProductById(id int, quantity int) {
+	
+	err := Db.Where("product_id = ?", id).Update("stock", gorm.Expr("stock - ?", quantity))
+
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	return
+}

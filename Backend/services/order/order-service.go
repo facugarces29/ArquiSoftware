@@ -14,6 +14,7 @@ type orderServiceInterface interface {
 	InsertOrder(dto.InsertOrderDto) (dto.OrderDto, error)
 	GetOrdersByUserId(int) (dto.OrdersByIdResponseDto, error)
 	GetOrders() (dto.OrdersDto, error)
+	DeleteOrder(int) error
 }
 
 var (
@@ -132,4 +133,19 @@ func (s *orderService) GetOrdersByUserId(idUser int) (dto.OrdersByIdResponseDto,
 	}
 
 	return ordersResponseDto, nil
+}
+
+func (s *orderService) DeleteOrder(id int) error {
+
+	err := orderCliente.DeleteOrderDetailsByOrderID(id)
+	if err != nil {
+		return err
+	}
+
+	err2 := orderCliente.DeleteOrderById(id)
+	if err2 != nil {
+		return err2
+	}
+
+	return nil
 }
