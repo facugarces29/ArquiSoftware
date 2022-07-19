@@ -25,7 +25,10 @@ func InsertOrderDetail(orderDetail modelOrder.OrderDetail) (modelOrder.OrderDeta
 		return orderDetail, err2
 	}
 
-	err3 := Db.Where("product_id = ?", product.ProductID).Update("stock", gorm.Expr("stock - ?", orderDetail.Quantity)).Error
+	//err3 := Db.Where("product_id = ?", product.ProductID).Update("stock", gorm.Expr("stock - ?", orderDetail.Quantity)).Error
+
+	err3 := Db.Model(&product).Where("product_id = ?", product.ProductID).Update("stock", gorm.Expr("stock - ?", orderDetail.Quantity)).Error
+
 	if err3 != nil {
 		log.Println(err3)
 		return orderDetail, err3
