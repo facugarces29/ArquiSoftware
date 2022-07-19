@@ -40,6 +40,11 @@ func (s *orderDetailService) InsertOrderDetail(orderDetailDto dto.InsertDetailDt
 
 	if err != nil {
 		log.Println(err)
+		errInterno := orderDetailCliente.DeleteOrderById(int(orderDetail.OrderID))
+		if errInterno != nil {
+			log.Println(err)
+			return orderDetailResponseDto, errInterno
+		}
 		return orderDetailResponseDto, err
 	}
 
